@@ -1,2 +1,2 @@
-# Unity_projects
+# Проекты на Unity3d и C#
 Все по туториалам, изучаю Unity3d (:
