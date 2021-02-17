@@ -19,14 +19,20 @@ public class Rocket : MonoBehaviour
     [SerializeField] ParticleSystem finishSFX;
     [SerializeField] ParticleSystem deathSFX;
     [SerializeField] ParticleSystem engineSFX;
-
+   
     enum State { Alive, Dying, Port }
     State state = State.Alive;
+    bool collisionDisabled = false;
+    
+     
     // Start is called before the first frame update
     void Start()
     {
+        //Debug.Log(SceneManager.sceneCountInBuildSettings);      
         rigidBody = GetComponent<Rigidbody>();
         AudioSource = GetComponent<AudioSource>();
+            
+        
     }
 
     // Update is called once per frame
@@ -37,12 +43,31 @@ public class Rocket : MonoBehaviour
             Trusted();
             Rotate();
         }
+        if (Debug.isDebugBuild)
+        {
+            DebugKeysBinds();
+        }
+       
 
+    }
+
+    void DebugKeysBinds()
+    {
+        if (Input.GetKeyDown(KeyCode.L))   
+        {                        
+            LoadNextLevel();
+            Debug.LogWarning("Cheated L : LoadNextLevel()");
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            collisionDisabled = !collisionDisabled;
+            Debug.LogWarning("collisionDisabled: " +collisionDisabled);                
+        }
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        if (state != State.Alive) { return; }
+        if (state != State.Alive || collisionDisabled) { return; }
         switch (collision.gameObject.tag)
         {
             case "Friendly":
@@ -52,7 +77,7 @@ public class Rocket : MonoBehaviour
                 Debug.Log("Fuel");
                 break;
             case "Finish":
-                Debug.Log("Finish");
+                Debug.Log("Finish");                
                 state = State.Port;
                 finishSFX.Play();
                 AudioSource.Stop();
@@ -65,14 +90,25 @@ public class Rocket : MonoBehaviour
                 deathSFX.Play();
                 AudioSource.Stop();
                 AudioSource.PlayOneShot(deathSound);
+                //rigidBody.freezeRotation = true;
                 Invoke("LoadFirstLevel", levelLoadDelay);              
                 break;
         }
     }
 
+    
     void LoadNextLevel()    {
-        
-        SceneManager.LoadScene(1);
+        //rigidBody.freezeRotation = false;
+        int currentSceneNumber=  SceneManager.GetActiveScene().buildIndex;
+        currentSceneNumber++;
+        Debug.Log("currentSceneNumber : " + currentSceneNumber);
+        int scenes = SceneManager.sceneCountInBuildSettings;
+        //Debug.Log("scenes: " + scenes);        
+        if (currentSceneNumber == scenes)  
+        {
+            currentSceneNumber=0;
+        }
+        SceneManager.LoadScene(currentSceneNumber);
     }
     void LoadFirstLevel()
     {
