@@ -8,31 +8,40 @@ public class PlayerShip : MonoBehaviour
     [Tooltip("in m or fields")] [SerializeField] float xMaximum = 10f;
     [Tooltip("in ms^-1")] [SerializeField] float ySpeed = 40f;
     [Tooltip("in m or fields")] [SerializeField] float yMaximum = 10f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] float rotateScale = -2.5f;
+    [SerializeField] float controlPitch = -25f;
+    [SerializeField] float controlYaw = 2f;
+    [SerializeField] float controlRoll = -50f;
+    
 
+    float pitch, yaw, roll, xThrow, xOffset, rawX, xMax, yThrow, yOffset, rawY, yMax;
     // Update is called once per frame
     void Update()
     {
-        float xThrow = Input.GetAxis("Horizontal");
-        float xOffset = xThrow * xSpeed * Time.deltaTime;
-        float rawX = transform.localPosition.x + xOffset;
-        float xMax = Mathf.Clamp(rawX, -xMaximum, xMaximum);
+        MovingAxis();
+        RotateAxis();
+    }
 
-        float yThrow = Input.GetAxis("Vertical");
-        float yOffset = yThrow * ySpeed * Time.deltaTime;
-        float rawY = transform.localPosition.y + yOffset;
-        float yMax = Mathf.Clamp(rawY, -yMaximum, yMaximum);
+    void RotateAxis()
+    {
+        pitch = transform.localPosition.y * rotateScale + yThrow * controlPitch;
+        yaw = transform.localPosition.x * controlYaw;
+        roll = xThrow * controlRoll;
+        transform.localRotation = Quaternion.Euler(pitch, yaw, roll);
+    }
+
+    void MovingAxis()
+    {
+         xThrow = Input.GetAxis("Horizontal");
+         xOffset = xThrow * xSpeed * Time.deltaTime;
+         rawX = transform.localPosition.x + xOffset;
+         xMax = Mathf.Clamp(rawX, -xMaximum, xMaximum);
+
+         yThrow = Input.GetAxis("Vertical");
+         yOffset = yThrow * ySpeed * Time.deltaTime;
+         rawY = transform.localPosition.y + yOffset;
+         yMax = Mathf.Clamp(rawY, -yMaximum, yMaximum);
 
         transform.localPosition = new Vector3(xMax, yMax, transform.localPosition.z);
-
-      
-
-       
-
-
     }
 }
