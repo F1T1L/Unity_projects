@@ -44,4 +44,8 @@ public class PlayerShip : MonoBehaviour
 
         transform.localPosition = new Vector3(xMax, yMax, transform.localPosition.z);
     }
+    void OnCollisionEnter(Collision collision)
+    {
+        print("Hit!");
+    }
 }

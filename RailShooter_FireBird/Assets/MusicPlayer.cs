@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MusicPlayer : MonoBehaviour
-{//transform.position = startPos + Vector3.up * height * Mathf.Sin(Time.time * speed);
+{
+    //transform.position = startPos + Vector3.up * height * Mathf.Sin(Time.time * speed);
     // Start is called before the first frame update
     void Awake()
     {
