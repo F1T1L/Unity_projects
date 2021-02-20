@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ScoreBoard : MonoBehaviour
-{
-    [SerializeField] int scorePerHit = 10;
+{   
     int score;
     TextMesh textMesh;
     void Start()
@@ -17,9 +16,9 @@ public class ScoreBoard : MonoBehaviour
     //{
     //    Score();
     //}
-    public void ScoreHit()
+    public void ScoreHit(int number)
     {
-        score += scorePerHit;
-        textMesh.text = score.ToString();
+        score += number;
+        textMesh.text = "Score: \n"+ score.ToString();
     }
 }
