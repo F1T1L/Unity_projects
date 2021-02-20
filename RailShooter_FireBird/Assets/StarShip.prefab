@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 1144427277879694332}
   - component: {fileID: 1144427277879694333}
   m_Layer: 0
-  m_Name: Bullets2
+  m_Name: Bullets_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3794,9 +3794,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
-    type: 0
+    type: 1
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
@@ -3967,11 +3967,11 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 2147483647
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -5046,7 +5046,7 @@ GameObject:
   - component: {fileID: 1144427278644104681}
   - component: {fileID: 1144427278644104662}
   m_Layer: 0
-  m_Name: Bullets
+  m_Name: Bullets_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8645,9 +8645,9 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 1}
   CollisionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
-    type: 0
+    type: 1
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
@@ -8818,11 +8818,11 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 2147483647
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
-    collisionMessages: 0
+    collisionMessages: 1
     collidesWithDynamic: 1
     interiorCollisions: 0
   TriggerModule:
@@ -9926,6 +9926,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1144427277002804418}
     m_Modifications:
     - target: {fileID: 1678275346594390111, guid: 673c9cad9643c444c93af33a376cbe7d, type: 3}
+      propertyPath: lengthInSec
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1678275346594390111, guid: 673c9cad9643c444c93af33a376cbe7d, type: 3}
       propertyPath: playOnAwake
       value: 1
       objectReference: {fileID: 0}
@@ -9936,6 +9940,10 @@ PrefabInstance:
     - target: {fileID: 4472552509876175310, guid: 673c9cad9643c444c93af33a376cbe7d, type: 3}
       propertyPath: m_Name
       value: Explosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 4472552509876175310, guid: 673c9cad9643c444c93af33a376cbe7d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6298309688232392451, guid: 673c9cad9643c444c93af33a376cbe7d, type: 3}
       propertyPath: m_RootOrder
