@@ -9,7 +9,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] int scoreForKill = 10;
     [SerializeField] int maxHits = 3;
    
-
     ScoreBoard scoreBoard;
     void Start()
     {

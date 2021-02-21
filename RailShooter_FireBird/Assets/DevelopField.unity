@@ -523,6 +523,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 647358600500243599, guid: fbf5f893eb6bf6e4db0012660259abcb, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79e41cf9e4ffcec479bd73a1f13912e7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbf5f893eb6bf6e4db0012660259abcb, type: 3}
 --- !u!1001 &1958972857866384570
@@ -580,6 +584,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ship_06
       objectReference: {fileID: 0}
+    - target: {fileID: 4205616913609023998, guid: 2c2e6de5ab6002c4596f175ded53b060, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79e41cf9e4ffcec479bd73a1f13912e7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c2e6de5ab6002c4596f175ded53b060, type: 3}
 --- !u!1001 &2736370566402925594
@@ -589,6 +597,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2714503427250357913, guid: 0dca8d3e11e300e469af66e8e6c995fb, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79e41cf9e4ffcec479bd73a1f13912e7, type: 2}
     - target: {fileID: 2735535200637950423, guid: 0dca8d3e11e300e469af66e8e6c995fb, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -694,6 +706,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8814971811782187788, guid: 7e7c8cdc99278a34f9f9a96473f50eb0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79e41cf9e4ffcec479bd73a1f13912e7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e7c8cdc99278a34f9f9a96473f50eb0, type: 3}
 --- !u!1001 &4577629465421437941
@@ -751,6 +767,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4599353044157887132, guid: eda05d2635e19dc4c89eab03de96d062, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79e41cf9e4ffcec479bd73a1f13912e7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eda05d2635e19dc4c89eab03de96d062, type: 3}
 --- !u!1001 &4642598269983400106
@@ -760,6 +780,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4629553062511435161, guid: 1a391bc53a0784044bee85814e0b9ef6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79e41cf9e4ffcec479bd73a1f13912e7, type: 2}
     - target: {fileID: 4639613338080573445, guid: 1a391bc53a0784044bee85814e0b9ef6, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -865,6 +889,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ship_07
       objectReference: {fileID: 0}
+    - target: {fileID: 6654162559559753055, guid: 51f339881e39f4c418730891e45dc728, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79e41cf9e4ffcec479bd73a1f13912e7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51f339881e39f4c418730891e45dc728, type: 3}
 --- !u!1001 &7550668834115895595
@@ -874,6 +902,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7536940419214899270, guid: 16428a70e00030d44a76c89384a0daf0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 79e41cf9e4ffcec479bd73a1f13912e7, type: 2}
     - target: {fileID: 7549763583843475254, guid: 16428a70e00030d44a76c89384a0daf0, type: 3}
       propertyPath: m_RootOrder
       value: 8
