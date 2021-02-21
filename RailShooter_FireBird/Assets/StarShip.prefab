@@ -119,6 +119,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xSpeed: 40
   ySpeed: 40
+  guns:
+  - {fileID: 1144427278644104660}
+  - {fileID: 1144427277879694331}
   yMaximumPosition: 10
   xMaximumPosition: 10
   rotateScale: -2.5
@@ -195,12 +198,12 @@ GameObject:
   - component: {fileID: 1144427277879694332}
   - component: {fileID: 1144427277879694333}
   m_Layer: 0
-  m_Name: Bullets_left
+  m_Name: Gun_left
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1144427277879694330
 Transform:
   m_ObjectHideFlags: 0
@@ -351,7 +354,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 400
+      scalar: 500
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1049,7 +1052,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 12
+      scalar: 10
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -5046,12 +5049,12 @@ GameObject:
   - component: {fileID: 1144427278644104681}
   - component: {fileID: 1144427278644104662}
   m_Layer: 0
-  m_Name: Bullets_right
+  m_Name: Gun_right
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1144427278644104663
 Transform:
   m_ObjectHideFlags: 0
@@ -5202,7 +5205,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 400
+      scalar: 500
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5900,7 +5903,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 12
+      scalar: 10
       minScalar: 10
       maxCurve:
         serializedVersion: 2

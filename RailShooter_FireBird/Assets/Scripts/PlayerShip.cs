@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class PlayerShip : MonoBehaviour
     [Header("General")]
     [Tooltip("in ms^-1")] [SerializeField] float xSpeed = 40f;
     [Tooltip("in ms^-1")] [SerializeField] float ySpeed = 40f;
+    [SerializeField] GameObject[] guns;
     [Header("Screen position")]
     [Tooltip("in m or fields")] [SerializeField] float yMaximumPosition = 10f;
     [Tooltip("in m or fields")] [SerializeField] float xMaximumPosition = 10f;
@@ -24,8 +26,27 @@ public class PlayerShip : MonoBehaviour
         {
         MovingAxis();
         RotateAxis();
+        Fire();
         }
     }
+
+    private void Fire()
+    {
+        if (Input.GetButton("Fire"))
+        {           
+            for (int i = 0; i < guns.Length; i++)
+            {
+                guns[i].SetActive(true);
+            }                    
+        } else
+        {
+            for (int i = 0; i < guns.Length; i++)
+            {
+                guns[i].SetActive(false);
+            }
+        }
+    }
+
     void onPlayerDeath() //вызов через сообщение, SendMessage.
     {
       //  print("onPlayerDeath()");
