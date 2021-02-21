@@ -6,7 +6,11 @@ public class PlayerShip : MonoBehaviour
 { 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     //AC
+=======
+    //AC    
+>>>>>>> parent of 636edbf (Merge branch 'main' of https://github.com/F1T1L/Unity_projects into main)
 =======
     //AC    
 >>>>>>> parent of 636edbf (Merge branch 'main' of https://github.com/F1T1L/Unity_projects into main)
