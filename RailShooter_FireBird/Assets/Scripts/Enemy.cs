@@ -23,10 +23,10 @@ public class Enemy : MonoBehaviour
     }
     void OnParticleCollision(GameObject other)
     {
+        scoreBoard.ScoreHit(scoreForKill);
         maxHits--;
         if (maxHits <= 0)
         {
-        scoreBoard.ScoreHit(scoreForKill);
         KillEnemy();
         }
     }
