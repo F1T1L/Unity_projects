@@ -1,10 +1,14 @@
-п»їusing System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerShip : MonoBehaviour
 { 
+<<<<<<< HEAD
     //AC
+=======
+    //AC    
+>>>>>>> parent of 636edbf (Merge branch 'main' of https://github.com/F1T1L/Unity_projects into main)
     [Header("General")]
     [Tooltip("in ms^-1")] [SerializeField] float xSpeed = 40f;
     [Tooltip("in ms^-1")] [SerializeField] float ySpeed = 40f;
@@ -27,7 +31,7 @@ public class PlayerShip : MonoBehaviour
         RotateAxis();
         }
     }
-    void onPlayerDeath() //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, SendMessage.
+    void onPlayerDeath() //вызов через сообщение, SendMessage.
     {
       //  print("onPlayerDeath()");
         isControllEnabled = false;
