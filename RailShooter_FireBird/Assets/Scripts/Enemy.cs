@@ -28,13 +28,12 @@ public class Enemy : MonoBehaviour
         {
         KillEnemy();
         }
-    }
-
+    }     
     private void KillEnemy()
     {
         GameObject fx = Instantiate(deathFX, transform.position, Quaternion.identity);
         fx.transform.parent = parent;
         // print("onParticleCollision(): Hit -> Enemy " +gameObject.name);
-        Destroy(gameObject);
+        Destroy(gameObject);             
     }
 }
