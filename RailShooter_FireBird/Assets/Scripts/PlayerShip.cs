@@ -22,7 +22,7 @@ public class PlayerShip : MonoBehaviour
 
     bool isControllEnabled = true;
     float pitch, yaw, roll, xThrow, xOffset, rawX, xMax, yThrow, yOffset, rawY, yMax;
-    
+    // Update is called once per frame
     void Update()
     {
         if (isControllEnabled)
