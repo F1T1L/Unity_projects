@@ -33,17 +33,22 @@ public class PlayerShip : MonoBehaviour
     private void Fire()
     {
         if (Input.GetButton("Fire"))
-        {           
-            for (int i = 0; i < guns.Length; i++)
-            {
-                guns[i].SetActive(true);
-            }                    
+        {
+            SetGunsActive(true);                     
         } else
         {
-            for (int i = 0; i < guns.Length; i++)
-            {
-                guns[i].SetActive(false);
-            }
+            SetGunsActive(false);                     
+            
+        }
+    }
+
+    private void SetGunsActive(bool v)
+    {
+        for (int i = 0; i < guns.Length; i++)
+        {
+            //var em = guns[i].GetComponent<ParticleSystem>().emission;
+            //em.enabled = v;
+            guns[i].GetComponent<ParticleSystem>().enableEmission = v;            
         }
     }
 
