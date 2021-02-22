@@ -29,7 +29,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 17.358574, y: 0.5, z: 15.582319}
   m_LocalScale: {x: 30, y: 30, z: 30}
-  m_Children: []
+  m_Children:
+  - {fileID: 2458426803526969403}
+  - {fileID: 9200735227168807794}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -145,3 +147,139 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1001 &2454351374417497871
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8795020328720703152}
+    m_Modifications:
+    - target: {fileID: 1113205305641416, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+      propertyPath: m_Name
+      value: Jet Particles Red
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940884351362868, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940884351362868, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940884351362868, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940884351362868, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940884351362868, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940884351362868, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.026
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940884351362868, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.327
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940884351362868, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940884351362868, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940884351362868, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940884351362868, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940884351362868, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940884351362868, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940884351362868, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+--- !u!4 &2458426803526969403 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4940884351362868, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+  m_PrefabInstance: {fileID: 2454351374417497871}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &9204827967131384902
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8795020328720703152}
+    m_Modifications:
+    - target: {fileID: 1113205305641416, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+      propertyPath: m_Name
+      value: Jet Particles Red (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940884351362868, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940884351362868, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.084
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940884351362868, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.026
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940884351362868, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.327
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940884351362868, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940884351362868, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940884351362868, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940884351362868, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940884351362868, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940884351362868, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940884351362868, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+--- !u!4 &9200735227168807794 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4940884351362868, guid: f4db5d2beba6fda428e352b819e6b43c, type: 3}
+  m_PrefabInstance: {fileID: 9204827967131384902}
+  m_PrefabAsset: {fileID: 0}
