@@ -13,7 +13,7 @@ public class CollisionManager : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-       // print("OnTriggerEnter()");
+        //print("OnTriggerEnter()");
         Death();
         deathFX.SetActive(true);//Включаем объект!
         Invoke("ReloadScene", levelLoadDelay);

@@ -21,15 +21,11 @@ public class MusicPlayer : MonoBehaviour
        
     }
     void Start()
-    {
+    {       
+        if (SceneManager.GetActiveScene().buildIndex== 0) { 
         Invoke("LoadFirstScene", 2f);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        }
+    }    
     void LoadFirstScene()
     {
         SceneManager.LoadScene(1);
