@@ -12,10 +12,7 @@ public class ScoreBoard : MonoBehaviour
         textMesh.text = "Score:";
     }
     
-    //void Update()
-    //{
-    //    Score();
-    //}
+   
     public void ScoreHit(int number)
     {
         score += number;
