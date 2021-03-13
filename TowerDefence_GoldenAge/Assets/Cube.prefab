@@ -82,20 +82,20 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1817849351348556673}
-  m_Text: XX,XX
+  m_Text: 0,0
   m_OffsetZ: 0
-  m_CharacterSize: 0.007
+  m_CharacterSize: 0.008
   m_LineSpacing: 1
   m_Anchor: 4
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 500
+  m_FontSize: 350
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: 0d5fffacf37d1e24083102a6dcb6836a, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4286597908
+    rgba: 4284959243
 --- !u!1 &1817849351767536206
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,6 +203,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1817849351906253425}
   - component: {fileID: 1817849351906253424}
+  - component: {fileID: 5509336451339376221}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -219,7 +220,7 @@ Transform:
   m_GameObject: {fileID: 1817849351906253427}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 9, y: 9, z: 9}
   m_Children:
   - {fileID: 1817849352790141808}
   - {fileID: 1817849352701650213}
@@ -243,6 +244,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridSize: 10
+--- !u!114 &5509336451339376221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817849351906253427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a37ca2a274958d4f8bfb9268f715474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1817849352021437385
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,7 +706,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: aba179c0299620a4e8982417418d39de, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
