@@ -75,7 +75,7 @@ public class PathFinder : MonoBehaviour
     //}
 
     private void CreatePath()
-    {
+    {        
         path.Add(endWaypoint);
         endWaypoint.isPlaceble = false;
         Waypoint next = endWaypoint.exploreFrom;
@@ -88,7 +88,7 @@ public class PathFinder : MonoBehaviour
         }
         path.Add(startWaypoint);
         startWaypoint.isPlaceble = false;
-        path.Reverse();
+        path.Reverse();       
     }
 
     private void PathFind()

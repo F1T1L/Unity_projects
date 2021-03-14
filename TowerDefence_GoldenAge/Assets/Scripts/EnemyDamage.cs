@@ -6,30 +6,32 @@ public class EnemyDamage : MonoBehaviour
 {
     //[SerializeField] Collider collisionMesh;
     [SerializeField] int hitPoints=10;
-
-    void Start()
-    {
-        
-    }
-
+    [SerializeField] ParticleSystem hitPart;
+    [SerializeField] ParticleSystem deathPart;
+    ParticleSystem deathvfx;
+  
     private void OnParticleCollision(GameObject other)
     {        
         ProcessHit();
         if (hitPoints <= 0)
         {
-            KillEnemy();
+            deathvfx= Instantiate(deathPart,transform.GetChild(0).position,Quaternion.identity);
+            deathvfx.Play();
+            Destroy(deathvfx, deathvfx.main.duration);
+            KillEnemy();            
         }
-    }
-
+    }  
     private void KillEnemy()
     {
-        Destroy(gameObject);
+        Destroy(gameObject);        
     }
 
     void ProcessHit()
     {
         hitPoints -= 1;
-       // print("HP: " + hitPoints);    
+        hitPart.Play();
+
+        //print("HP: " + hitPoints);    
     }
 }
 

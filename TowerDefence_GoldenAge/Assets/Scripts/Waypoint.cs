@@ -4,23 +4,21 @@ using UnityEngine;
 
 public class Waypoint : MonoBehaviour
 {
-    [SerializeField] public Color explored;
-    [SerializeField] Tower towerPrefab;
+    [SerializeField] public Color explored;  
     Vector2Int gridPos;
     const int gridSize = 10;
     public bool isExplored = false;
     public bool isPlaceble = true;
     public Waypoint exploreFrom;
     public int GetGridSize => gridSize;
-
+    Tower tw;
     void OnMouseOver()
     {  
         if (Input.GetMouseButtonDown(0))
         {
             if (isPlaceble && (gameObject.tag!="Enemy"))
             {
-                print(gameObject.name + " placeble for tower.");
-                Instantiate(towerPrefab, transform.position, Quaternion.identity);
+                FindObjectOfType<TowerFactory>().AddTower(this);
                 isPlaceble = false;
             }else if(gameObject.tag == "Enemy")
             {

@@ -9,16 +9,16 @@ public class Tower : MonoBehaviour
     [SerializeField] Transform objectToPan;
     [SerializeField] ParticleSystem projectileParticle;
     [SerializeField] float attackRange =40f;
-
+    public Waypoint baseWaypoint;
     Transform targetEnemy;
     
     void Update()
-    {
+    {       
         SetTargetEnemy();
         if (targetEnemy)
-        {
-        objectToPan.LookAt(targetEnemy);
-        FireAtEnemy();
+        {           
+            objectToPan.LookAt(targetEnemy.GetChild(0));
+            FireAtEnemy();
         }
         else{
             Shoot(false);                                   

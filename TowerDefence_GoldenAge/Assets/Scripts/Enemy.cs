@@ -35,13 +35,9 @@ public class Enemy : MonoBehaviour
 
     IEnumerator FollowPath(List<Waypoint> path)
     {
-        //float speed = 1.0f;
-        //float step = speed * Time.deltaTime;
         foreach (Waypoint waypoint in path)
-        {
-            
-            //transform.position = Vector3.MoveTowards(transform.position, waypoint.transform.position, step);
-            transform.position = waypoint.transform.position;
+        {        
+            transform.position = Vector3.Lerp(transform.position, waypoint.transform.position,1f);
             if (transform.position != pf.startWaypoint.transform.position &&
                 transform.position != pf.endWaypoint.transform.position)
             {
