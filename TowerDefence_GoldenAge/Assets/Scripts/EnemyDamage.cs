@@ -29,7 +29,7 @@ public class EnemyDamage : MonoBehaviour
     void ProcessHit()
     {
         hitPoints -= 1;
-        print("HP: " + hitPoints);    
+       // print("HP: " + hitPoints);    
     }
 }
 
