@@ -18,10 +18,8 @@ public class EnemySpawner : MonoBehaviour
     {
         while (true)
         {
-            this.MemberwiseClone();
-                Instantiate(enemyObject, this.transform.position, Quaternion.identity);           
-
-            yield return new WaitForSeconds(spawnSeconds);
+           Instantiate(enemyObject, transform.position, Quaternion.identity, transform);
+           yield return new WaitForSeconds(spawnSeconds);
         }       
     }
 

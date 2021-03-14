@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 5984268083579614233}
   m_Layer: 0
   m_Name: EnemyBlock
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,7 +143,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explored: {r: 0.11949679, g: 0.5825897, b: 0.7169812, a: 0}
+  towerPrefab: {fileID: 8602872846732477180, guid: bfa245fe5fe0be54f9ee0617a8bbb7c3, type: 3}
   isExplored: 0
+  isPlaceble: 1
   exploreFrom: {fileID: 0}
 --- !u!65 &5984268083579614233
 BoxCollider:

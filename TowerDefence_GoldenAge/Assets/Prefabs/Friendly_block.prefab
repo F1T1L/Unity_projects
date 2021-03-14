@@ -156,7 +156,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explored: {r: 0.11949679, g: 0.5825897, b: 0.7169812, a: 0}
+  towerPrefab: {fileID: 8602872846732477180, guid: bfa245fe5fe0be54f9ee0617a8bbb7c3, type: 3}
   isExplored: 0
+  isPlaceble: 1
   exploreFrom: {fileID: 0}
 --- !u!65 &4492083169772509443
 BoxCollider:
@@ -169,8 +171,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Size: {x: 10, y: 11, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3785925836799396685
 GameObject:
   m_ObjectHideFlags: 0
