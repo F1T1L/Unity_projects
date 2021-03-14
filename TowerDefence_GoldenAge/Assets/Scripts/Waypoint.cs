@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Waypoint : MonoBehaviour
 {
-    [SerializeField] Color explored;
+    [SerializeField] public Color explored;
     Vector2Int gridPos;
     const int gridSize = 10;
     public bool isExplored = false;
@@ -24,11 +24,5 @@ public class Waypoint : MonoBehaviour
          mesh.material.color = color;
         
     }
-    //void Update()
-    //{
-    //    if (isExplored)
-    //    {
-    //        SetTopColor(explored);
-    //    }
-    //}
+    
 }

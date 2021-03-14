@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PathFinder : MonoBehaviour
 {
-    [SerializeField] Waypoint startWaypoint, endWaypoint;
+    [SerializeField] public Waypoint startWaypoint, endWaypoint;
     [SerializeField] Color startColor, endColor;
     
     Dictionary<Vector2Int, Waypoint> worldGrid = new Dictionary<Vector2Int, Waypoint>();
@@ -18,14 +18,13 @@ public class PathFinder : MonoBehaviour
     {
         LoadBlocks();
         PathFind();
-        CreatePath();
+        CreatePath();        
         return path;
     }
 
     private void LoadBlocks()
     {
-        startWaypoint.SetTopColor(startColor);
-        endWaypoint.SetTopColor(endColor);
+        SetStartAndEndColors();
         wps = FindObjectsOfType<Waypoint>();
         foreach (var waypoint in wps)
         {
@@ -38,6 +37,12 @@ public class PathFinder : MonoBehaviour
                 worldGrid.Add(waypoint.GetGridPos(), waypoint);
             }
         }
+    }
+
+    private void SetStartAndEndColors()
+    {
+        startWaypoint.SetTopColor(startColor);
+        endWaypoint.SetTopColor(endColor);
     }
 
     Vector2Int[] directions =

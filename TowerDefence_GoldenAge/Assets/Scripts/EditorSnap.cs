@@ -35,6 +35,6 @@ public class EditorSnap : MonoBehaviour
     {
         string labelText = (waypoint.GetGridPos().x ) + "," + (waypoint.GetGridPos().y );
         textMesh.text = labelText;
-        gameObject.name = labelText + " Cube";
+        gameObject.name = labelText;
     }
 }
