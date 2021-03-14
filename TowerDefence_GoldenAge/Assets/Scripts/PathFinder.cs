@@ -16,9 +16,12 @@ public class PathFinder : MonoBehaviour
     List<Waypoint> path = new List<Waypoint>();
     public List<Waypoint> GetPath()
     {
+        if (path.Count == 0)
+        {
         LoadBlocks();
         PathFind();
-        CreatePath();        
+        CreatePath(); 
+        }
         return path;
     }
 

@@ -20,7 +20,7 @@ public class Tower : MonoBehaviour
         FireAtEnemy();
         }
         else{
-            Shoot(false);
+            Shoot(false);           
         }
     }
 
