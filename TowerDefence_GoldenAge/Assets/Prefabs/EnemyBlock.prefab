@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2802032212297703957}
   - component: {fileID: 2802032212297703962}
   - component: {fileID: 2802032212297703963}
-  - component: {fileID: 2802032212297703956}
   m_Layer: 0
   m_Name: Top
   m_TagString: Untagged
@@ -84,20 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2802032212297703956
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2802032212297703958}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &2802032213460636438
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,6 +94,7 @@ GameObject:
   - component: {fileID: 2802032213460636436}
   - component: {fileID: 2802032213460636437}
   - component: {fileID: 8335465242037313336}
+  - component: {fileID: 5984268083579614233}
   m_Layer: 0
   m_Name: EnemyBlock
   m_TagString: Untagged
@@ -159,6 +145,19 @@ MonoBehaviour:
   explored: {r: 0.11949679, g: 0.5825897, b: 0.7169812, a: 0}
   isExplored: 0
   exploreFrom: {fileID: 0}
+--- !u!65 &5984268083579614233
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2802032213460636438}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &2802032214009715428
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,7 +240,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2802032214009715428}
-  m_Text: -4,3
+  m_Text: -1,2
   m_OffsetZ: 0
   m_CharacterSize: 0.1
   m_LineSpacing: 1

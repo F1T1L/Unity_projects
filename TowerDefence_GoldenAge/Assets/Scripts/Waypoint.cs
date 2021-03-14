@@ -11,7 +11,10 @@ public class Waypoint : MonoBehaviour
     public Waypoint exploreFrom;
     public int GetGridSize => gridSize;
 
-    // Start is called before the first frame update
+    void OnMouseOver()
+    {
+        print(gameObject.name);
+    }
     public Vector2Int GetGridPos()
     {
         return new Vector2Int(

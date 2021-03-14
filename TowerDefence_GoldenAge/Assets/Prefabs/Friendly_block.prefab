@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3785925835082576831}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -4.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3785925836799396686}
@@ -82,9 +82,9 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3785925835082576831}
-  m_Text: 7,0
+  m_Text: 1,2
   m_OffsetZ: 0
-  m_CharacterSize: 0.008
+  m_CharacterSize: 0.1
   m_LineSpacing: 1
   m_Anchor: 4
   m_Alignment: 0
@@ -107,8 +107,9 @@ GameObject:
   - component: {fileID: 3785925835649186383}
   - component: {fileID: 3785925835649186382}
   - component: {fileID: 7045067392596964963}
+  - component: {fileID: 4492083169772509443}
   m_Layer: 0
-  m_Name: 7,0 Cube
+  m_Name: Friendly_block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -157,6 +158,19 @@ MonoBehaviour:
   explored: {r: 0.11949679, g: 0.5825897, b: 0.7169812, a: 0}
   isExplored: 0
   exploreFrom: {fileID: 0}
+--- !u!65 &4492083169772509443
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3785925835649186381}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &3785925836799396685
 GameObject:
   m_ObjectHideFlags: 0

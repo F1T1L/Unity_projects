@@ -548,7 +548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyObject: {fileID: 8051433841059670837, guid: cae840c5fd2642644aaaa2eb1d69b8b8, type: 3}
-  spawnSeconds: 3
+  spawnSeconds: 1.5
 --- !u!4 &424440263 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2990299263828586805, guid: e4894d46e83c19046a4d70b130ac9d88, type: 3}
@@ -1778,6 +1778,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: -4,3
       objectReference: {fileID: 0}
+    - target: {fileID: 2802032214009715434, guid: 1e21047585dbeb6459b94702fd4908b8, type: 3}
+      propertyPath: m_Text
+      value: -4,3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e21047585dbeb6459b94702fd4908b8, type: 3}
 --- !u!4 &1071125844 stripped
@@ -1838,10 +1842,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2990299263828586807, guid: e4894d46e83c19046a4d70b130ac9d88, type: 3}
       propertyPath: m_Name
-      value: 0,2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2990299264377731275, guid: e4894d46e83c19046a4d70b130ac9d88, type: 3}
-      propertyPath: m_Text
       value: 0,2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1919,10 +1919,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2802032213460636438, guid: 1e21047585dbeb6459b94702fd4908b8, type: 3}
       propertyPath: m_Name
-      value: -1,2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2802032214009715434, guid: 1e21047585dbeb6459b94702fd4908b8, type: 3}
-      propertyPath: m_Text
       value: -1,2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2657,18 +2653,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 539441376}
     m_Modifications:
-    - target: {fileID: 3785925835082576816, guid: fe87207eb4b788d49bde5ab82ff7cd01, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -4.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 3785925835082576817, guid: fe87207eb4b788d49bde5ab82ff7cd01, type: 3}
-      propertyPath: m_Text
-      value: 1,2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3785925835082576817, guid: fe87207eb4b788d49bde5ab82ff7cd01, type: 3}
-      propertyPath: m_CharacterSize
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 3785925835649186381, guid: fe87207eb4b788d49bde5ab82ff7cd01, type: 3}
       propertyPath: m_Name
       value: 1,2
