@@ -17,7 +17,7 @@ public class EnemyDamage : MonoBehaviour
         {
             deathvfx= Instantiate(deathPart,transform.GetChild(0).position,Quaternion.identity);
             deathvfx.Play();
-            Destroy(deathvfx, deathvfx.main.duration);
+            Destroy(deathvfx.gameObject, deathvfx.main.duration);
             KillEnemy();            
         }
     }  

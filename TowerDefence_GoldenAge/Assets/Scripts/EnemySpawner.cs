@@ -21,7 +21,5 @@ public class EnemySpawner : MonoBehaviour
            Instantiate(enemyObject, transform.position, Quaternion.identity, transform);
            yield return new WaitForSeconds(spawnSeconds);
         }       
-    }
-
-   
+    }   
 }
