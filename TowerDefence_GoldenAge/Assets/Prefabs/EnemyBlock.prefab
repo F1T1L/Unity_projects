@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 2802032213460636437}
   - component: {fileID: 8335465242037313336}
   m_Layer: 0
-  m_Name: 4,0 Cube
+  m_Name: EnemyBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -185,7 +185,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2802032214009715428}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -4.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2802032212297703957}
@@ -241,14 +241,14 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2802032214009715428}
-  m_Text: 4,0
+  m_Text: 1,2
   m_OffsetZ: 0
-  m_CharacterSize: 0.008
+  m_CharacterSize: 0.1
   m_LineSpacing: 1
   m_Anchor: 4
   m_Alignment: 0
   m_TabSize: 4
-  m_FontSize: 350
+  m_FontSize: 365
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: 0d5fffacf37d1e24083102a6dcb6836a, type: 3}
