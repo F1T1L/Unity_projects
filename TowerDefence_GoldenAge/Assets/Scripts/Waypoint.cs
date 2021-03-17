@@ -32,11 +32,11 @@ public class Waypoint : MonoBehaviour
          Mathf.RoundToInt(transform.position.x / gridSize) ,
          Mathf.RoundToInt(transform.position.z / gridSize));
     }
-    public void SetTopColor(Color color)
-    {
-     var mesh = transform.Find("Top").GetComponent<MeshRenderer>();
-         mesh.material.color = color;
+    //public void SetTopColor(Color color)
+    //{
+    // var mesh = transform.Find("Top").GetComponent<MeshRenderer>();
+    //     mesh.material.color = color;
         
-    }
+    //}
     
 }

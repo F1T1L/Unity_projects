@@ -27,7 +27,7 @@ public class PathFinder : MonoBehaviour
 
     private void LoadBlocks()
     {
-        SetStartAndEndColors();
+       // SetStartAndEndColors();
         wps = FindObjectsOfType<Waypoint>();
         foreach (var waypoint in wps)
         {
@@ -42,11 +42,11 @@ public class PathFinder : MonoBehaviour
         }
     }
 
-    private void SetStartAndEndColors()
-    {
-        startWaypoint.SetTopColor(startColor);
-        endWaypoint.SetTopColor(endColor);
-    }
+    //private void SetStartAndEndColors()
+    //{
+    //    startWaypoint.SetTopColor(startColor);
+    //    endWaypoint.SetTopColor(endColor);
+    //}
 
     Vector2Int[] directions =
     {
