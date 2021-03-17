@@ -308,7 +308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyObject: {fileID: 1289942997295908, guid: 04f81ff9814844ccfa08226f8d46a3f4, type: 3}
-  spawnSeconds: 3
+  spawnSeconds: 1
 --- !u!4 &424440263 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2990299263828586805, guid: e4894d46e83c19046a4d70b130ac9d88, type: 3}

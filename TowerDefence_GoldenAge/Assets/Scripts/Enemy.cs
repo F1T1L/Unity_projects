@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] ParticleSystem deathPart;
+    [SerializeField] float movementPeriod = .5f;
+    PathFinder pf;
     enum Directions
     {
         Forward,
@@ -12,7 +15,6 @@ public class Enemy : MonoBehaviour
         Left,
         Right
     };
-    PathFinder pf;
     void Start()
     {
         pf = FindObjectOfType<PathFinder>();
@@ -40,8 +42,13 @@ public class Enemy : MonoBehaviour
         // path[path.Count - 1].SetTopColor(Color.yellow);
         //       
     }
- 
-
+    void SelfDestruct()
+    {
+            var deathvfx= Instantiate(deathPart, transform.GetChild(0).position,Quaternion.identity);
+            deathvfx.Play();
+            Destroy(deathvfx.gameObject, deathvfx.main.duration);
+            Destroy(gameObject);
+    }
     private IEnumerator SmoothLerp(float time, Waypoint waypoint)
     {
         Vector3 startingPos = transform.position;
@@ -115,14 +122,15 @@ public class Enemy : MonoBehaviour
     {
         foreach (Waypoint waypoint in path)
         {
-            StartCoroutine(SmoothLerp(1f, waypoint));
+            StartCoroutine(SmoothLerp(movementPeriod, waypoint));
             //if (transform.position != pf.startWaypoint.transform.position &&
             //    transform.position != pf.endWaypoint.transform.position)
             //{
             //waypoint.SetTopColor( waypoint.explored);
             //}
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(movementPeriod);
         }
+        SelfDestruct();
     }
     
 
