@@ -58,16 +58,15 @@ public class Enemy : MonoBehaviour
         
         var heading = transform.position - waypoint.transform.position;
         Directions direction = HeadingDirection(heading);
-        //print("Direction: " + direction);               
-        
+        //print("Direction: " + direction);
         float elapsedTime = 0;
 
         while (elapsedTime < time)
         {
             transform.position = Vector3.Lerp(startingPos, finalPos, (elapsedTime / time));                      
             transform.rotation = Quaternion.Lerp(startRot, SetRotationWhileMove(direction, finalRot,10f), (elapsedTime / time));
-            elapsedTime += Time.deltaTime;
-            transform.rotation.SetLookRotation(waypoint.transform.position);
+            elapsedTime += Time.deltaTime;            
+            //transform.rotation.SetLookRotation(waypoint.transform.position, finalPos);           
             yield return null;
         }
       //  transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, smooth * Time.deltaTime);

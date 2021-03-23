@@ -14,7 +14,7 @@ public class TowerFactory : MonoBehaviour
         //towers = FindObjectsOfType<Tower>();        
         if (towerLimit > que.Count)
         {
-            print("Towers placed: " + (que.Count+1));
+           // print("Towers placed: " + (que.Count+1));
             var newTower= Instantiate(towerPrefab, wp.transform.position, Quaternion.identity);
             newTower.baseWaypoint = wp;
             wp.isPlaceble = false;
@@ -22,7 +22,7 @@ public class TowerFactory : MonoBehaviour
         }
         else
         {
-            print("Limit of Towers is " + towerLimit);
+            //print("Limit of Towers is " + towerLimit);
             MoveExistingTower(wp);
         }
         
