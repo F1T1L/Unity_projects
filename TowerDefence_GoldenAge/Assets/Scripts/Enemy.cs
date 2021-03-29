@@ -47,6 +47,7 @@ public class Enemy : MonoBehaviour
             var deathvfx= Instantiate(deathPart, transform.GetChild(0).position,Quaternion.identity);
             deathvfx.Play();
             Destroy(deathvfx.gameObject, deathvfx.main.duration);
+
             Destroy(gameObject);
     }
     private IEnumerator SmoothLerp(float time, Waypoint waypoint)

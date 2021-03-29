@@ -8,6 +8,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] GameObject enemyObject;
     [SerializeField] float spawnSeconds=3f;
     [SerializeField] TextMesh textWaves;
+    [SerializeField] AudioClip spawnEnemySFX;
     int count;
     private void Start()
     {        
@@ -19,6 +20,7 @@ public class EnemySpawner : MonoBehaviour
         while (true)
         {
             Instantiate(enemyObject, transform.position, Quaternion.identity, transform);
+            GetComponent<AudioSource>().PlayOneShot(spawnEnemySFX);
             count++;
             textWaves.text=count.ToString();
             yield return new WaitForSeconds(spawnSeconds);
