@@ -6,12 +6,13 @@ using UnityEngine;
 public class BaseHealth : MonoBehaviour
 {
     [SerializeField] int baseHealth = 20;
+    [SerializeField] int decreaseHealth = 1;
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {
         if (baseHealth>0)
         {
-            --baseHealth;
+            baseHealth-= decreaseHealth;
         } else {
             GameOver();
         }
