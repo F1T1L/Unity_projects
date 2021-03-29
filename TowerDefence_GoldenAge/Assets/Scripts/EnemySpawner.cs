@@ -6,9 +6,9 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] GameObject enemyObject;
-    [SerializeField] float spawnSeconds=3f;   
-
-
+    [SerializeField] float spawnSeconds=3f;
+    [SerializeField] TextMesh textWaves;
+    int count;
     private void Start()
     {        
         StartCoroutine(SpawnEnemy());
@@ -18,8 +18,10 @@ public class EnemySpawner : MonoBehaviour
     {
         while (true)
         {
-           Instantiate(enemyObject, transform.position, Quaternion.identity, transform);
-           yield return new WaitForSeconds(spawnSeconds);
+            Instantiate(enemyObject, transform.position, Quaternion.identity, transform);
+            count++;
+            textWaves.text=count.ToString();
+            yield return new WaitForSeconds(spawnSeconds);
         }       
     }   
 }

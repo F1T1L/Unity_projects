@@ -6,7 +6,7 @@ using UnityEngine;
 public class TowerFactory : MonoBehaviour
 {
     [SerializeField] Tower towerPrefab;
-    [SerializeField] int towerLimit=5;
+    [SerializeField] int towerLimit=5;   
     //Tower[] towers;
     Queue<Tower> que = new Queue<Tower>();
     public void AddTower(Waypoint wp)
