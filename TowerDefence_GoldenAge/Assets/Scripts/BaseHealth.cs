@@ -23,10 +23,27 @@ public class BaseHealth : MonoBehaviour
             GameOver();
         }
     }
+    //void OnGUI()
+    //{
+    //    // Make a background box
+    //    GUI.Box(new Rect(500 ,510, 400   , 300), "Loader Menu");
 
+    //    // Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
+    //    if (GUI.Button(new Rect(500, 510, 155, 150), "Level 1"))
+    //    {
+    //        //Application.LoadLevel(1);
+    //    }
+
+    //    // Make the second button.
+    //    if (GUI.Button(new Rect(750, 510, 155, 150), "Level 2"))
+    //    {
+    //      //  Application.LoadLevel(2);
+    //    }
+    //}
     private void GameOver()
     {
-        print("GAME OVER!");        
+        print("GAME OVER!");
+        Application.Quit();
     }
 
 }
