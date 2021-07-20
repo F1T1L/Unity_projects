@@ -6,13 +6,13 @@ using UnityEngine.UI;
 //[RequireComponent(typeof(RawImage))]
 public class PlayerHealthBar : MonoBehaviour
 {
-   RawImage healthBarRawImage;
+    RawImage healthBarRawImage;
     Player player;
 
     // Use this for initialization
     void Start()
     {
-        player = FindObjectOfType<Player>();
+       player = FindObjectOfType<Player>();
        healthBarRawImage = GetComponent<RawImage>();
     }
 

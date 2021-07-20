@@ -1606,6 +1606,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealthPoints: 100
   radius: 3
+  currentHealthPoints: 100
 --- !u!114 &1660040641
 MonoBehaviour:
   m_ObjectHideFlags: 0
