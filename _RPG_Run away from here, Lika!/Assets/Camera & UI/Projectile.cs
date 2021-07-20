@@ -6,7 +6,8 @@ public class Projectile : MonoBehaviour
 {
     
     [SerializeField] public float projectileSpeed = 10f;
-    public float DamageCouse { get; set; }
+    public float DamageCouse;
+
     void OnTriggerEnter(Collider other)
     {
         var damageable = other.gameObject.GetComponent(typeof(IDamageAble));
