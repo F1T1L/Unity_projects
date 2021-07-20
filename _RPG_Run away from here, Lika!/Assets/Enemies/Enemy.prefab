@@ -1498,6 +1498,7 @@ Transform:
   - {fileID: 495908}
   - {fileID: 448028}
   - {fileID: 68706067}
+  - {fileID: 1521794582889799178}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1605,8 +1606,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealthPoints: 100
-  radius: 3
   currentHealthPoints: 100
+  attackRadius: 3
+  chaseRadius: 5
+  secondsBetweenShots: 1
+  damagePerShot: 10
+  projectileToUse: {fileID: 1140975907500531083, guid: 2cd8eda95ecfc28439f3dddbb1e05e06, type: 3}
+  projectileSocket: {fileID: 7605906210182795148}
+  aimOffset: {x: 0, y: 1, z: 0}
 --- !u!114 &1660040641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2962,3 +2969,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCanvasPrefab: {fileID: 1311539807392560, guid: 9a9d70d10b9331d469e57254147e0430, type: 3}
+--- !u!1 &7605906210182795148
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1521794582889799178}
+  m_Layer: 7
+  m_Name: ProjectileSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1521794582889799178
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7605906210182795148}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 408730}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
