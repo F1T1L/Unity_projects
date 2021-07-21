@@ -2841,7 +2841,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!136 &7395700260399181227
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2912,7 +2912,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2478d6ed81467634d8ecc9eee6b9095e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyLayer: 7
   maxHealthPoints: 100
+  currentHealthPoints: 100
+  damagePerHit: 25
+  hitDelay: 1.5
+  maxAttackRange: 2
 --- !u!114 &7395700260821331042
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,27 +6,28 @@ using UnityStandardAssets.Characters.ThirdPerson;
 
 public class Enemy : MonoBehaviour, IDamageAble
 {
-    
-    [SerializeField] float maxHealthPoints=100f;
-    [SerializeField] float currentHealthPoints=100f;
+
+    [SerializeField] float maxHealthPoints = 100f;
+    [SerializeField] float currentHealthPoints = 100f;
 
     [SerializeField] float attackRadius = 3f;
     [SerializeField] float chaseRadius = 5f;
-    [SerializeField] float secondsBetweenShots = 2f;  
-    [SerializeField] float damagePerShot = 10f;  
-    [SerializeField] GameObject projectileToUse=null;
-    [SerializeField] GameObject projectileSocket=null;
+    [SerializeField] float secondsBetweenShots = 2f;
+    [SerializeField] float damagePerShot = 10f;
+
+    [SerializeField] GameObject projectileToUse = null;
+    [SerializeField] GameObject projectileSocket = null;
     [SerializeField] Vector3 aimOffset = new Vector3(0, 1.2f, 0);
     bool isAttacking = false;
     GameObject player = null;
     AICharacterControl aiCharacter = null;
-    CapsuleCollider capsulaPlayer=null;
+    CapsuleCollider capsulaPlayer = null;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         capsulaPlayer = GetComponent<CapsuleCollider>();
-        aiCharacter=GetComponent<AICharacterControl>();
+        aiCharacter = GetComponent<AICharacterControl>();
         currentHealthPoints = maxHealthPoints;
     }
     private void Update()
@@ -54,11 +55,11 @@ public class Enemy : MonoBehaviour, IDamageAble
             CancelInvoke();
         }
     }
-  
+
 
     void FireProjectile()
     {
-        
+
         var projectile = Instantiate(projectileToUse, projectileSocket.transform.position, Quaternion.identity);
         Projectile projectileComponent = projectile.GetComponent<Projectile>();
         projectileComponent.DamageCouse = damagePerShot;
@@ -75,9 +76,13 @@ public class Enemy : MonoBehaviour, IDamageAble
         // projectile.transform.Translate(vectorToPlayer * projectileSpeed);
     }
 
-    void IDamageAble.TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
+        if (currentHealthPoints <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
     public float healthAsPercentage
     {
