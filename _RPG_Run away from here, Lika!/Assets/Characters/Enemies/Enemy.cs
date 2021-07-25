@@ -63,13 +63,14 @@ public class Enemy : MonoBehaviour, IDamageAble
         var projectile = Instantiate(projectileToUse, projectileSocket.transform.position, Quaternion.identity);
         Projectile projectileComponent = projectile.GetComponent<Projectile>();
         projectileComponent.DamageCouse = damagePerShot;
+        projectileComponent.SetShooter(gameObject);
         Vector3 vectorToPlayer = (player.transform.position + aimOffset - projectileSocket.transform.position).normalized;
         //Vector3 vectorToPlayer = (
         //    (new Vector3(player.transform.position.x, player.transform.position.y +
         //    capsulaPlayer.height * 0.7f, player.transform.position.z)) -
         //    projectileSocket.transform.position).normalized;
 
-        var projectileSpeed = projectileComponent.projectileSpeed;
+        var projectileSpeed = projectileComponent.SetDefaultLaunchSpeed();
         projectile.GetComponent<Rigidbody>().velocity = vectorToPlayer * projectileSpeed;
         // projectile.GetComponent<Rigidbody>().MovePosition(player.transform.position);
         // projectile.GetComponent<Rigidbody>().AddForce(vectorToPlayer * 5f);
