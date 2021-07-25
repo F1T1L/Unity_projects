@@ -13,6 +13,8 @@ public class Player : MonoBehaviour, IDamageAble
     [SerializeField] float hitDelay= 1.5f;
    // [SerializeField] float minAttackRange= 2f;
     [SerializeField] float maxAttackRange= 2f;
+
+    [SerializeField] Weapon weaponInUse = null;
     
 
     GameObject currentTarget;
@@ -24,6 +26,12 @@ public class Player : MonoBehaviour, IDamageAble
         cameraRaycaster = FindObjectOfType<CameraRaycaster>();
         cameraRaycaster.notifyMouseClickObservers += OnMouseClick;
         currentHealthPoints = maxHealthPoints;
+        if (!weaponInUse)
+        {
+            Instantiate(weaponInUse, this.transform.Find("EthanRightHandThumb4"));
+           
+           
+        }
     }
     void OnMouseClick(RaycastHit raycastHit, int layerHit)
     {
