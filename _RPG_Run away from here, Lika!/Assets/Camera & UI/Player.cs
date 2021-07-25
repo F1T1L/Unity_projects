@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,13 +27,17 @@ public class Player : MonoBehaviour, IDamageAble
         cameraRaycaster = FindObjectOfType<CameraRaycaster>();
         cameraRaycaster.notifyMouseClickObservers += OnMouseClick;
         currentHealthPoints = maxHealthPoints;
-        if (!weaponInUse)
-        {
-            Instantiate(weaponInUse, this.transform.Find("EthanRightHandThumb4"));
-           
-           
-        }
+        PutWeaponInHand();
+       
     }
+
+    private void PutWeaponInHand()
+    {
+        var weaponPrefab = weaponInUse.GetWeaponPrefab();       
+        var weapon = Instantiate(weaponPrefab);        
+        //Instantiate(weaponInUse, this.transform.Find("EthanRightHandThumb4"));
+    }
+
     void OnMouseClick(RaycastHit raycastHit, int layerHit)
     {
         if (layerHit == enemyLayer)

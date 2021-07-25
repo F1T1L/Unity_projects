@@ -5,5 +5,5 @@ public class Weapon : ScriptableObject
 {
     [SerializeField] GameObject weaponPrefab;
     [SerializeField] AnimationClip attackAnimation;
-    
+    public GameObject GetWeaponPrefab() { return weaponPrefab; }
 }
