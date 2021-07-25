@@ -41,7 +41,7 @@ public class Player : MonoBehaviour, IDamageAble
         weapon.transform.localRotation = weaponInUse.gripTransform.localRotation;
         //Instantiate(weaponInUse, this.transform.Find("EthanRightHandThumb4"));
     }
-
+     
     private GameObject ReqestDominantHand()
     {
         var dominantHands = GetComponentsInChildren<DominantHand>();
