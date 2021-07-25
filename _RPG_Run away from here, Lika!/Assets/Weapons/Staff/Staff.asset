@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65aef09147ea1af42a3ad60ecaac8cf2, type: 3}
   m_Name: Staff
   m_EditorClassIdentifier: 
+  gripTransform: {fileID: 2503492076790922330, guid: 220dc6e37fdcbc84c9f8d156d3212939, type: 3}
   weaponPrefab: {fileID: 1336652535116873170, guid: 63a28b7c1555684469477120b58129ae, type: 3}
   attackAnimation: {fileID: 7400002, guid: 0d9d26e2162aa4d11ab075b34c029673, type: 3}

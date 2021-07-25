@@ -2919,6 +2919,7 @@ MonoBehaviour:
   hitDelay: 1.5
   maxAttackRange: 2
   weaponInUse: {fileID: 0}
+  weaponSocket: {fileID: 4223834183009084835}
 --- !u!114 &7395700260821331042
 MonoBehaviour:
   m_ObjectHideFlags: 0

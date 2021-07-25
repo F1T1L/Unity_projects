@@ -16,6 +16,7 @@ public class Player : MonoBehaviour, IDamageAble
     [SerializeField] float maxAttackRange= 2f;
 
     [SerializeField] Weapon weaponInUse = null;
+    [SerializeField] GameObject weaponSocket = null;
     
 
     GameObject currentTarget;
@@ -33,8 +34,10 @@ public class Player : MonoBehaviour, IDamageAble
 
     private void PutWeaponInHand()
     {
-        var weaponPrefab = weaponInUse.GetWeaponPrefab();       
-        var weapon = Instantiate(weaponPrefab);        
+        //var weaponPrefab = weaponInUse.GetWeaponPrefab();       
+        var weapon = Instantiate(weaponInUse.GetWeaponPrefab(),weaponSocket.transform);
+        weapon.transform.localPosition = weaponInUse.gripTransform.localPosition;
+        weapon.transform.localRotation = weaponInUse.gripTransform.localRotation;
         //Instantiate(weaponInUse, this.transform.Find("EthanRightHandThumb4"));
     }
 
