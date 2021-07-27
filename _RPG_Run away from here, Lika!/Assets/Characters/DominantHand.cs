@@ -1,5 +1,7 @@
 using UnityEngine;
-
-public class DominantHand : MonoBehaviour
-{    
+namespace RPG.Character
+{
+    public class DominantHand : MonoBehaviour
+    {
+    }
 }

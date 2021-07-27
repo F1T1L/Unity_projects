@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+namespace RPG.CameraUI { 
 public class CameraFollow : MonoBehaviour {
 
 	[SerializeField] GameObject gameCanvasPrefab = null;
@@ -20,4 +21,5 @@ public class CameraFollow : MonoBehaviour {
 	void LateUpdate () {
         transform.position = player.transform.position;
 	}
+}
 }
