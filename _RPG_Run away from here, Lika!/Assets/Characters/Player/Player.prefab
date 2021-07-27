@@ -2932,7 +2932,7 @@ MonoBehaviour:
   hitDelay: 1.5
   maxAttackRange: 2
   weaponInUse: {fileID: 11400000, guid: 544fb388b20d70744af623adf2d455d6, type: 2}
-  weaponSocket: {fileID: 4223834183009084835}
+  animatorOverrideController: {fileID: 22100000, guid: cecd1d931c2bfe7448c398a4dd842bc3, type: 2}
 --- !u!114 &7395700260821331042
 MonoBehaviour:
   m_ObjectHideFlags: 0

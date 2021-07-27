@@ -22,6 +22,7 @@ namespace RPG.Character
         [SerializeField] float maxAttackRange = 2f;
 
         [SerializeField] Weapon weaponInUse = null;
+        [SerializeField] AnimatorOverrideController animatorOverrideController = null;
         //[SerializeField] GameObject weaponSocket = null;
 
 
@@ -34,7 +35,15 @@ namespace RPG.Character
             cameraRaycaster.notifyMouseClickObservers += OnMouseClick;
             currentHealthPoints = maxHealthPoints;
             PutWeaponInHand();
+            AnimatorOverrideController();
 
+        }
+
+        private void AnimatorOverrideController()
+        {
+           var animator= GetComponent<Animator>();
+            animator.runtimeAnimatorController = animatorOverrideController;
+            animatorOverrideController["Default attack"] = weaponInUse.GetAnimClip();
         }
 
         private void PutWeaponInHand()
