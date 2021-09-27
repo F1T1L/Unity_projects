@@ -45,6 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: 46107d5569ac64f4b8100d2791b0f9c6, type: 3}
   layerFilter: 8
-  triggerRadius: 2.39
+  triggerRadius: 4
   isOneTimeOnly: 1
   hasPlayed: 0
