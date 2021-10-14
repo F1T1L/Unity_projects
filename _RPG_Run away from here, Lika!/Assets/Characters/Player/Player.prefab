@@ -3030,6 +3030,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f8393c086366074fa118346fe028ac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnergyBar: {fileID: 1100462537064411422}
   maxEnergyPoints: 100
   pointsPerHit: 10
+  currentEnergyPoints: 0

@@ -11,8 +11,6 @@ namespace RPG.Character
 {
     public class Player : MonoBehaviour, IDamageAble
     {
-        [SerializeField] int enemyLayer = 7;
-
         [SerializeField] float maxHealthPoints = 100f;
         [SerializeField] float currentHealthPoints = 100f;
 
@@ -31,7 +29,7 @@ namespace RPG.Character
         private void Start()
         {
             cameraRaycaster = FindObjectOfType<CameraRaycaster>();
-            cameraRaycaster.notifyMouseClickObservers += OnMouseClick;
+            cameraRaycaster.notifyOnMouseoverEnemyObservers += OnMouseoverEnemyObservers;
             currentHealthPoints = maxHealthPoints;
             PutWeaponInHand();
             SutupRuntimeAnimator();
@@ -63,25 +61,22 @@ namespace RPG.Character
             return dominantHands[0].gameObject;
         }
 
-        void OnMouseClick(RaycastHit raycastHit, int layerHit)
+        void OnMouseoverEnemyObservers(Enemy enemy)
         {
-            if (layerHit == enemyLayer)
-            {
-                var enemy = raycastHit.collider.gameObject;
-                if (isTargetInRange(enemy))
-                {
-                    AttackTarget(enemy);
-                }  
+            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) && isTargetInRange(enemy.gameObject))
+            {             
+                AttackTarget(enemy);
+                 
             }
+            
         }
 
-        private void AttackTarget(GameObject enemy)
-        {
-                var enemyComponent = enemy.GetComponent<Enemy>();
+        private void AttackTarget(Enemy enemy)
+        {                
                 if (Time.time - lastHitTime >weaponInUse.GetHitDelay())
                 {
                     animator.SetTrigger("Attack");
-                    enemyComponent.TakeDamage(damagePerHit);
+                    enemy.TakeDamage(damagePerHit);
                     lastHitTime = Time.time;
                 }           
         }
