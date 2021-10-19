@@ -9,10 +9,15 @@ namespace RPG.Character
         {
            this.config = config;
         }
-
-        public void Use()
+        void Start()
         {
-            print("PowerAttack USE()");
+            print("PowerAttackBehavior attached to " + gameObject.name);
+        }
+        public void Use(AbilityUseParams aparams)
+        {
+            print("PowerAttack.USE(), extra damage:" + config.GetExtraDamage()+ " by "+
+                gameObject.name + " BaseDamage:" + aparams.baseDamage);
+            aparams.target.TakeDamage(aparams.baseDamage + config.GetExtraDamage());           
         }
     }
 }

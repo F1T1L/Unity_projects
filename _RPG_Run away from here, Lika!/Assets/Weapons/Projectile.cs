@@ -34,7 +34,7 @@ namespace RPG.Weapons
         {
             var damageable = other.gameObject.GetComponent(typeof(IDamageAble));
             //  if (damageable && other.transform.tag.Contains("Player"))
-            if (damageable && (other.gameObject.layer != shooter.layer))
+            if (damageable && (other.gameObject.layer != shooter.layer) && (damageable.gameObject!=null))
             {
                 //  print("BALL TRIGGER: " + other.name );
                 (damageable as IDamageAble).TakeDamage(DamageCouse);

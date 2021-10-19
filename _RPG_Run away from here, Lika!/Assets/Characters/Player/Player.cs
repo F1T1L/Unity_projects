@@ -14,12 +14,12 @@ namespace RPG.Character
         [SerializeField] float maxHealthPoints = 100f;
         [SerializeField] float currentHealthPoints = 100f;
 
-        [SerializeField] float damagePerHit = 10f;       
+        [SerializeField] float basedamage = 10f;       
 
         [SerializeField] Weapon weaponInUse = null;
         [SerializeField] AnimatorOverrideController animatorOverrideController = null;
         //[SerializeField] GameObject weaponSocket = null;
-        [SerializeField] SpecialAbilityConfig[] abilities;
+        [SerializeField] SpecialAbility[] abilities;
 
         Animator animator;
         Energy energyComponent;
@@ -81,10 +81,11 @@ namespace RPG.Character
         private void AttemptUseSpecialAbility(int index,Enemy enemy)
         {
             energyComponent=FindObjectOfType<Energy>();            
-            if (energyComponent.IsEnergyAvaible(10f))// TODO script
+            if (energyComponent.IsEnergyAvaible(abilities[index].GetEnergyCost()))// TODO script
             {
-                energyComponent.ConsumeEnergy(10f);
-                abilities[index].Use();
+                energyComponent.ConsumeEnergy(abilities[index].GetEnergyCost());
+                var abilityParams = new AbilityUseParams(enemy, basedamage);
+                abilities[index].Use(abilityParams);
             }
             else { print("<color=orange><b>Need more Energy!</b></color>"); }
 
@@ -95,7 +96,7 @@ namespace RPG.Character
                 if (Time.time - lastHitTime >weaponInUse.GetHitDelay())
                 {
                     animator.SetTrigger("Attack");  
-                    enemy.TakeDamage(damagePerHit);
+                    enemy.TakeDamage(basedamage);
                     lastHitTime = Time.time;
                 }           
         }
