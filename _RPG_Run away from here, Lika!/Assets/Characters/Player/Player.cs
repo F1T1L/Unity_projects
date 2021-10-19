@@ -19,12 +19,12 @@ namespace RPG.Character
         [SerializeField] Weapon weaponInUse = null;
         [SerializeField] AnimatorOverrideController animatorOverrideController = null;
         //[SerializeField] GameObject weaponSocket = null;
-        [SerializeField] SpecialAbilityConfig ability1;
+        [SerializeField] SpecialAbilityConfig[] abilities;
 
         Animator animator;
-
+        Energy energyComponent;
         CameraRaycaster cameraRaycaster;
-        float distanceToEnemy;
+        
         float lastHitTime;
        
         private void Start()
@@ -32,9 +32,11 @@ namespace RPG.Character
             cameraRaycaster = FindObjectOfType<CameraRaycaster>();
             cameraRaycaster.notifyOnMouseoverEnemyObservers += OnMouseoverEnemyObservers;
             currentHealthPoints = maxHealthPoints;
+            
+           
             PutWeaponInHand();
             SutupRuntimeAnimator();
-            ability1.AddComponent(gameObject);
+            abilities[0].AddComponent(gameObject);
 
         }
 
@@ -68,26 +70,23 @@ namespace RPG.Character
             if ( Input.GetMouseButtonDown(0) && isTargetInRange(enemy.gameObject))
             {
                 //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(enemy.transform.position), Time.deltaTime);
-                AttackTarget(enemy);                 
+                AttackTarget(enemy);                
             } 
-            if (Input.GetMouseButtonDown(1))
-            {
-                AttemptUseSpecialAbility(enemy);
+            else if(Input.GetMouseButtonDown(1))
+            {                                
+                AttemptUseSpecialAbility(0,enemy);
             }            
         }
 
-        private void AttemptUseSpecialAbility(Enemy enemy)
+        private void AttemptUseSpecialAbility(int index,Enemy enemy)
         {
-            var getEnergyComponent = GetComponents<Energy>();
-            foreach (var item in getEnergyComponent)
+            energyComponent=FindObjectOfType<Energy>();            
+            if (energyComponent.IsEnergyAvaible(10f))// TODO script
             {
-                item.ConsumeEnergy(10f);
+                energyComponent.ConsumeEnergy(10f);
+                abilities[index].Use();
             }
-
-            //if (getEnergyComponent.IsEnergyAvaible(10f))// TODO script
-            //{
-            //    getEnergyComponent.ConsumeEnergy(10f);
-            //}
+            else { print("<color=orange><b>Need more Energy!</b></color>"); }
 
         }
 

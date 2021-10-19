@@ -12,7 +12,7 @@ namespace RPG.Character
 
         public void Use()
         {
-         
+            print("PowerAttack USE()");
         }
     }
 }
