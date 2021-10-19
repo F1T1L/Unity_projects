@@ -38,9 +38,9 @@ namespace RPG.Character
 
         void OnMouseoverEnemyObservers(Enemy enemy)
         {
-            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(0))
             {
-                aiCharacterControl.SetTarget(enemy.transform);
+                aiCharacterControl.SetTarget(enemy.transform);                
             }
         }
 

@@ -18,7 +18,8 @@ namespace RPG.Character
 
         [SerializeField] Weapon weaponInUse = null;
         [SerializeField] AnimatorOverrideController animatorOverrideController = null;
-        //[SerializeField] GameObject weaponSocket = null;        
+        //[SerializeField] GameObject weaponSocket = null;
+        [SerializeField] SpecialAbilityConfig ability1;
 
         Animator animator;
 
@@ -33,6 +34,7 @@ namespace RPG.Character
             currentHealthPoints = maxHealthPoints;
             PutWeaponInHand();
             SutupRuntimeAnimator();
+            ability1.AddComponent(gameObject);
 
         }
 
@@ -63,19 +65,37 @@ namespace RPG.Character
 
         void OnMouseoverEnemyObservers(Enemy enemy)
         {
-            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) && isTargetInRange(enemy.gameObject))
-            {             
-                AttackTarget(enemy);
-                 
-            }
-            
+            if ( Input.GetMouseButtonDown(0) && isTargetInRange(enemy.gameObject))
+            {
+                //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(enemy.transform.position), Time.deltaTime);
+                AttackTarget(enemy);                 
+            } 
+            if (Input.GetMouseButtonDown(1))
+            {
+                AttemptUseSpecialAbility(enemy);
+            }            
         }
 
-        private void AttackTarget(Enemy enemy)
+        private void AttemptUseSpecialAbility(Enemy enemy)
+        {
+            var getEnergyComponent = GetComponents<Energy>();
+            foreach (var item in getEnergyComponent)
+            {
+                item.ConsumeEnergy(10f);
+            }
+
+            //if (getEnergyComponent.IsEnergyAvaible(10f))// TODO script
+            //{
+            //    getEnergyComponent.ConsumeEnergy(10f);
+            //}
+
+        }
+
+            private void AttackTarget(Enemy enemy)
         {                
                 if (Time.time - lastHitTime >weaponInUse.GetHitDelay())
                 {
-                    animator.SetTrigger("Attack");
+                    animator.SetTrigger("Attack");  
                     enemy.TakeDamage(damagePerHit);
                     lastHitTime = Time.time;
                 }           

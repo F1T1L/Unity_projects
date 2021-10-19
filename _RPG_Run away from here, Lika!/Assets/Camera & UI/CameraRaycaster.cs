@@ -63,8 +63,8 @@ namespace RPG.CameraUI
 				RaycastHit raycastHit;
 				Physics.Raycast(ray, out raycastHit, maxRaycastDepth);
 				GameObject enemy = raycastHit.collider.gameObject;
-				var enemyHit = enemy.GetComponent<Enemy>();
-                if (enemyHit)
+				Enemy enemyHit = enemy.GetComponent<Enemy>();
+                if (enemyHit as Enemy)
                 {
 				//print("EnemyCursor_2");
 					Cursor.SetCursor(targetCursor, cursorHotspot, CursorMode.Auto);
