@@ -26,8 +26,10 @@ namespace RPG.Character
         private void Update()
         {
             if (target != null)
-                agent.SetDestination(target.position);
-
+            {
+                agent.SetDestination(target.position);                
+            }
+            
             if (agent.remainingDistance > agent.stoppingDistance)
             {
                 character.Move(agent.desiredVelocity, false, false); 
@@ -38,11 +40,10 @@ namespace RPG.Character
                 {
                     agent.velocity = Vector3.zero;
                 }                    
-                character.Move(Vector3.zero, false, false);
+                character.Move(Vector3.zero, false, false);                
             }
         }
-
-
+               
         public void SetTarget(Transform target)
         {
             this.target = target;

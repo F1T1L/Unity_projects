@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Assertions;
 using RPG.CameraUI;
 using RPG.Core;
@@ -15,29 +16,29 @@ namespace RPG.Character
         [SerializeField] float currentHealthPoints = 100f;
 
         [SerializeField] float basedamage = 10f;       
+        [SerializeField] AudioClip[] damageSounds=null;       
+        [SerializeField] AudioClip[] deathSounds=null;       
 
         [SerializeField] Weapon weaponInUse = null;
         [SerializeField] AnimatorOverrideController animatorOverrideController = null;
         //[SerializeField] GameObject weaponSocket = null;
         [SerializeField] SpecialAbility[] abilities;
 
+        AudioSource audioSource;
         Animator animator;
         Energy energyComponent;
-        CameraRaycaster cameraRaycaster;
-        
+        CameraRaycaster cameraRaycaster;      
         float lastHitTime;
        
         private void Start()
         {
+            audioSource = GetComponent<AudioSource>();
             cameraRaycaster = FindObjectOfType<CameraRaycaster>();
             cameraRaycaster.notifyOnMouseoverEnemyObservers += OnMouseoverEnemyObservers;
-            currentHealthPoints = maxHealthPoints;
-            
-           
+            currentHealthPoints = maxHealthPoints;  
             PutWeaponInHand();
             SutupRuntimeAnimator();
-            abilities[0].AddComponent(gameObject);
-
+            abilities[0].AddComponent(gameObject);            
         }
 
         private void SutupRuntimeAnimator()
@@ -80,36 +81,77 @@ namespace RPG.Character
 
         private void AttemptUseSpecialAbility(int index,Enemy enemy)
         {
-            energyComponent=FindObjectOfType<Energy>();            
-            if (energyComponent.IsEnergyAvaible(abilities[index].GetEnergyCost()))// TODO script
+            if (Time.time - lastHitTime > weaponInUse.GetHitDelay())
             {
-                energyComponent.ConsumeEnergy(abilities[index].GetEnergyCost());
-                var abilityParams = new AbilityUseParams(enemy, basedamage);
-                abilities[index].Use(abilityParams);
+                energyComponent = FindObjectOfType<Energy>();
+                if (energyComponent.IsEnergyAvaible(abilities[index].GetEnergyCost()))// TODO script
+                {
+                    energyComponent.ConsumeEnergy(abilities[index].GetEnergyCost());
+                    var abilityParams = new AbilityUseParams(enemy, basedamage);
+                    abilities[index].Use(abilityParams);
+                    animator.SetTrigger("AoE");
+                }
+                else { print("<color=orange><b>Need more Energy!</b></color>"); }
+                lastHitTime = Time.time;
             }
-            else { print("<color=orange><b>Need more Energy!</b></color>"); }
-
         }
+        private IEnumerator SmoothLerp(float time, Enemy enemy)
+        {
+            Vector3 vectorToTarget = enemy.transform.position - transform.position;
+            float angle = Mathf.Atan2(vectorToTarget.x, vectorToTarget.z) * Mathf.Rad2Deg;
+            Quaternion q = Quaternion.AngleAxis(angle, Vector3.up);  
+            float elapsedTime = 0;
+            while (elapsedTime < time)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, q, (elapsedTime / time));                
+                elapsedTime += Time.deltaTime;                          
+                yield return null;
+            }           
+        }
+        private void AttackTarget(Enemy enemy)
+        {
+            StartCoroutine(SmoothLerp(0.5f, enemy));
+            //Vector3 relative = transform.InverseTransformPoint(enemy.transform.position);                   
+            //this.transform.Rotate(0, Mathf.Atan2(relative.x, relative.z)* Mathf.Rad2Deg, 0);
+            
 
-            private void AttackTarget(Enemy enemy)
-        {                
-                if (Time.time - lastHitTime >weaponInUse.GetHitDelay())
+            if (Time.time - lastHitTime >weaponInUse.GetHitDelay())
                 {
                     animator.SetTrigger("Attack");  
                     enemy.TakeDamage(basedamage);
                     lastHitTime = Time.time;
                 }           
         }
-
         private bool isTargetInRange(GameObject enemy)
         {
             return (Vector3.Distance(this.transform.position, enemy.transform.position)) <= weaponInUse.GetMaxAttackRange();
-        }
-
+        }        
         void IDamageAble.TakeDamage(float damage)
         {
             currentHealthPoints = Mathf.Clamp(currentHealthPoints - damage, 0f, maxHealthPoints);
+            if (!audioSource.isPlaying)
+            {
+                audioSource.clip = damageSounds[UnityEngine.Random.Range(0, damageSounds.Length)];
+                audioSource.PlayDelayed(0.05f);                
+            }            
+            if (currentHealthPoints<= 0) //Player Death!
+            {                
+                StartCoroutine(KillPlayer());                
+            }
+           
         }
+        IEnumerator KillPlayer()
+        {            
+            AICharacterControl acc = GetComponent<AICharacterControl>();            
+            acc.enabled = false;   // body after death will not move. turn off component.        
+            animator.SetTrigger("DEATH_TRIGGER");
+            //audioSource.Stop();
+            audioSource.clip = deathSounds[UnityEngine.Random.Range(0, deathSounds.Length)];
+            audioSource.Play();            
+            yield return new WaitForSecondsRealtime(audioSource.clip.length);            
+            SceneManager.LoadSceneAsync(0);
+        }
+
         public float healthAsPercentage { get { return currentHealthPoints / maxHealthPoints; } }
 
     }

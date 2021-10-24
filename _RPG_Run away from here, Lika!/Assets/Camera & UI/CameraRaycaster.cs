@@ -18,18 +18,22 @@ namespace RPG.CameraUI
 		[SerializeField] const int enemyLayerNumber = 7;
 
 		float maxRaycastDepth = 100f; // Hard coded value		
+		Rect screenRectAtStartApp; //no resize . hardcoded
 
 		
 		public delegate void OnMouseoverTerrain(Vector3 destination); 
 		public event OnMouseoverTerrain notifyOnMouseoverTerrainObservers; 
 
 		public delegate void OnMouseoverEnemy(Enemy enemy); 
-		public event OnMouseoverEnemy notifyOnMouseoverEnemyObservers; 
-
-		void Update()
+		public event OnMouseoverEnemy notifyOnMouseoverEnemyObservers;
+		private void Start()
         {
-            // Check if pointer is over an interactable UI element
-            if (EventSystem.current.IsPointerOverGameObject())
+			screenRectAtStartApp = new Rect(0, 0, Screen.width, Screen.height);
+		}
+		void Update()
+        {			
+			// Check if pointer is over an interactable UI element
+			if (EventSystem.current.IsPointerOverGameObject())
             {
 				Cursor.SetCursor(buttonCursor, cursorHotspot, CursorMode.Auto);
 				//  NotifyObserersIfLayerChanged(5);
@@ -37,10 +41,13 @@ namespace RPG.CameraUI
 			}
             else
 			{
-				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-				if (RaycastForEnemy(ray)) {return;}
-                if (RaycastForWalkable(ray)) {return;}
-				
+				if (screenRectAtStartApp.Contains(Input.mousePosition))
+				{
+					Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+					if (RaycastForEnemy(ray)) { return; }
+					if (RaycastForWalkable(ray)) { return; }
+				}
+				else { Debug.LogWarning("NOT IN RECTANGLE OF SCREEN"); }
             }
 
             bool RaycastForWalkable(Ray ray)
@@ -54,7 +61,7 @@ namespace RPG.CameraUI
 					notifyOnMouseoverTerrainObservers(raycastHit.point);					
 					return true;
 				}
-				return false;
+				return false;                
 			}
 
 			bool RaycastForEnemy(Ray ray)

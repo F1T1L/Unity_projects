@@ -22,24 +22,29 @@ namespace RPG.Character
         [SerializeField] GameObject projectileSocket = null;
         [SerializeField] Vector3 aimOffset = new Vector3(0, 1.2f, 0);
         bool isAttacking = false;
-        GameObject player = null;
+        Player player = null;
         AICharacterControl aiCharacter = null;
         CapsuleCollider capsulaPlayer = null;
 
         private void Start()
         {
-            player = GameObject.FindGameObjectWithTag("Player");
+            player = FindObjectOfType<Player>();
             capsulaPlayer = GetComponent<CapsuleCollider>();
             aiCharacter = GetComponent<AICharacterControl>();
             currentHealthPoints = maxHealthPoints;
         }
         private void Update()
         {
+            if (player.healthAsPercentage <= Mathf.Epsilon)
+            {
+                StopAllCoroutines(); //stop shooting
+                Destroy(this); //removes script from object
+            }
             float distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
 
             if (distanceToPlayer <= chaseRadius)
             {
-                aiCharacter.SetTarget(player.transform);
+                aiCharacter.SetTarget(player.transform);               
             }
             else
             {
@@ -49,6 +54,7 @@ namespace RPG.Character
             if (distanceToPlayer <= attackRadius && !isAttacking)
             {
                 isAttacking = true;
+                LookAtPlayer();
                 InvokeRepeating("FireProjectile", 0f, secondsBetweenShots); // TODO switch to coroutines
             }
 
@@ -59,6 +65,14 @@ namespace RPG.Character
             }
         }
 
+        private void LookAtPlayer()
+        {
+            Vector3 lookPos = player.transform.position - transform.position;
+            Quaternion lookRot = Quaternion.LookRotation(lookPos, Vector3.up);
+            float eulerY = lookRot.eulerAngles.y;
+            Quaternion rotation = Quaternion.Euler(0, eulerY, 0);
+            transform.rotation = rotation;
+        }
 
         void FireProjectile()
         {
