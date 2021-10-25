@@ -26,12 +26,10 @@ namespace RPG.CameraUI
 
 		public delegate void OnMouseoverEnemy(Enemy enemy); 
 		public event OnMouseoverEnemy notifyOnMouseoverEnemyObservers;
-		private void Start()
-        {
-			screenRectAtStartApp = new Rect(0, 0, Screen.width, Screen.height);
-		}
+		
 		void Update()
-        {			
+        {
+			screenRectAtStartApp =new Rect(0, 0, Screen.width, Screen.height);
 			// Check if pointer is over an interactable UI element
 			if (EventSystem.current.IsPointerOverGameObject())
             {

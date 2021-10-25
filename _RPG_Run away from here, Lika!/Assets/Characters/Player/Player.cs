@@ -70,11 +70,12 @@ namespace RPG.Character
         {
             if ( Input.GetMouseButtonDown(0) && isTargetInRange(enemy.gameObject))
             {
-                //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(enemy.transform.position), Time.deltaTime);
+                StartCoroutine(SmoothLerp(0.5f, enemy));
                 AttackTarget(enemy);                
             } 
             else if(Input.GetMouseButtonDown(1))
-            {                                
+            {
+                StartCoroutine(SmoothLerp(0.5f, enemy));
                 AttemptUseSpecialAbility(0,enemy);
             }            
         }
@@ -110,7 +111,7 @@ namespace RPG.Character
         }
         private void AttackTarget(Enemy enemy)
         {
-            StartCoroutine(SmoothLerp(0.5f, enemy));
+            
             //Vector3 relative = transform.InverseTransformPoint(enemy.transform.position);                   
             //this.transform.Rotate(0, Mathf.Atan2(relative.x, relative.z)* Mathf.Rad2Deg, 0);
             
@@ -147,7 +148,8 @@ namespace RPG.Character
             animator.SetTrigger("DEATH_TRIGGER");
             //audioSource.Stop();
             audioSource.clip = deathSounds[UnityEngine.Random.Range(0, deathSounds.Length)];
-            audioSource.Play();            
+            audioSource.Play();
+            Debug.LogWarning("Player died.");
             yield return new WaitForSecondsRealtime(audioSource.clip.length);            
             SceneManager.LoadSceneAsync(0);
         }
