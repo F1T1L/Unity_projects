@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a1782be5e1bdbc459b78a95b3b454a8, type: 3}
-  m_Name: Area Of Effect
+  m_Name: Area Of Effect rank1
   m_EditorClassIdentifier: 
-  energyCost: 50
+  energyCost: 25
+  particlePrefab: {fileID: 8232465024044698571, guid: 112b8ac74e6f6f840be588a3da36617e, type: 3}
+  audioClip: {fileID: 8300000, guid: 558b476c572fddc4d8338fa635b7324d, type: 3}
   radius: 5
   damageToEachTarget: 15

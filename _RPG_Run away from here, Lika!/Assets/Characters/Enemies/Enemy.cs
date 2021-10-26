@@ -35,7 +35,7 @@ namespace RPG.Character
         }
         private void Update()
         {
-            if (player.healthAsPercentage <= Mathf.Epsilon)
+            if (player.HealthAsPercentage <= Mathf.Epsilon)
             {
                 StopAllCoroutines(); //stop shooting
                 Destroy(this); //removes script from object

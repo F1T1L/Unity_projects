@@ -13,20 +13,32 @@ namespace RPG.Character
             this.baseDamage = baseDamage;
         }
     }
-    public abstract class SpecialAbility : ScriptableObject
+    public abstract class AbilityConfig : ScriptableObject
     {
         [Header("Special Ability")]
         [SerializeField] float energyCost = 10f;
+        [SerializeField] GameObject particlePrefab= null;
+        [SerializeField] AudioClip audioClip= null;
         protected ISpecialAbility behavior;
         public abstract void AddComponent(GameObject gameObjectToAttachTo);
         public void Use(AbilityUseParams aparams)
         {
             behavior.Use(aparams);
+            //AudioSource.PlayClipAtPoint(audioClip, Vector3.zero);
         }
         public float GetEnergyCost()
         {
             return energyCost;
         }
+        public GameObject GetParticlePrefab()
+        {
+            return particlePrefab;
+        }
+        public AudioClip GetAudioClip()
+        {
+            return audioClip;
+        }
+
     }
     public interface ISpecialAbility
     {

@@ -18,7 +18,7 @@ namespace RPG.Character
         }
         void Update()
         {              
-            healthBarImage.fillAmount = player.healthAsPercentage;
+            healthBarImage.fillAmount = player.HealthAsPercentage;
         }
     }
 }

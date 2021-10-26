@@ -14,7 +14,6 @@ namespace RPG.Character
     {
         [SerializeField] float maxHealthPoints = 100f;
         [SerializeField] float currentHealthPoints = 100f;
-
         [SerializeField] float basedamage = 10f;       
         [SerializeField] AudioClip[] damageSounds=null;       
         [SerializeField] AudioClip[] deathSounds=null;       
@@ -22,14 +21,15 @@ namespace RPG.Character
         [SerializeField] Weapon weaponInUse = null;
         [SerializeField] AnimatorOverrideController animatorOverrideController = null;
         //[SerializeField] GameObject weaponSocket = null;
-        [SerializeField] SpecialAbility[] abilities;
-
+        [SerializeField] AbilityConfig[] abilities;
+        
         AudioSource audioSource;
         Animator animator;
         Energy energyComponent;
+        Enemy enemy = null;
         CameraRaycaster cameraRaycaster;      
         float lastHitTime;
-       
+        public float CurrentHealthPoints { get=>currentHealthPoints; set=>currentHealthPoints=value; }
         private void Start()
         {
             audioSource = GetComponent<AudioSource>();
@@ -38,9 +38,35 @@ namespace RPG.Character
             currentHealthPoints = maxHealthPoints;  
             PutWeaponInHand();
             SutupRuntimeAnimator();
-            abilities[0].AddComponent(gameObject);            
+            AttachAbilities();                      
         }
 
+        private void AttachAbilities()
+        {
+            for (int i = 0; i < abilities.Length; i++)
+            {
+                abilities[i].AddComponent(gameObject);                
+            }
+        }
+
+        private void Update()
+        {
+            if (currentHealthPoints > Mathf.Epsilon)
+            {
+                ScanForAbilityKeyDown();
+            }
+        }
+
+        private void ScanForAbilityKeyDown()
+        {
+            for (int i = 0; i < abilities.Length; i++)
+            {                
+                if (Input.GetKeyDown((i+1).ToString()))
+                {
+                    AttemptUseSpecialAbility(i);                    
+                }
+            }            
+        }     
         private void SutupRuntimeAnimator()
         {
             animator= GetComponent<Animator>();
@@ -68,19 +94,20 @@ namespace RPG.Character
 
         void OnMouseoverEnemyObservers(Enemy enemy)
         {
+            this.enemy = enemy;
             if ( Input.GetMouseButtonDown(0) && isTargetInRange(enemy.gameObject))
             {
                 StartCoroutine(SmoothLerp(0.5f, enemy));
-                AttackTarget(enemy);                
+                AttackTarget();                
             } 
             else if(Input.GetMouseButtonDown(1))
             {
                 StartCoroutine(SmoothLerp(0.5f, enemy));
-                AttemptUseSpecialAbility(0,enemy);
+                AttemptUseSpecialAbility(0);
             }            
         }
 
-        private void AttemptUseSpecialAbility(int index,Enemy enemy)
+        private void AttemptUseSpecialAbility(int index)
         {
             if (Time.time - lastHitTime > weaponInUse.GetHitDelay())
             {
@@ -109,13 +136,10 @@ namespace RPG.Character
                 yield return null;
             }           
         }
-        private void AttackTarget(Enemy enemy)
+        private void AttackTarget()
         {
-            
             //Vector3 relative = transform.InverseTransformPoint(enemy.transform.position);                   
             //this.transform.Rotate(0, Mathf.Atan2(relative.x, relative.z)* Mathf.Rad2Deg, 0);
-            
-
             if (Time.time - lastHitTime >weaponInUse.GetHitDelay())
                 {
                     animator.SetTrigger("Attack");  
@@ -133,14 +157,20 @@ namespace RPG.Character
             if (!audioSource.isPlaying)
             {
                 audioSource.clip = damageSounds[UnityEngine.Random.Range(0, damageSounds.Length)];
-                audioSource.PlayDelayed(0.05f);                
-            }            
-            if (currentHealthPoints<= 0) //Player Death!
-            {                
-                StartCoroutine(KillPlayer());                
+                audioSource.PlayDelayed(0.05f);
             }
-           
+            CheckPlayerHealth();
+
         }
+
+        private void CheckPlayerHealth()
+        {
+            if (currentHealthPoints <= 0) //Player Death!
+            {
+                StartCoroutine(KillPlayer());
+            }
+        }
+
         IEnumerator KillPlayer()
         {            
             AICharacterControl acc = GetComponent<AICharacterControl>();            
@@ -151,10 +181,23 @@ namespace RPG.Character
             audioSource.Play();
             Debug.LogWarning("Player died.");
             yield return new WaitForSecondsRealtime(audioSource.clip.length);            
-            SceneManager.LoadSceneAsync(0);
+            SceneManager.LoadScene(0);
         }
-
-        public float healthAsPercentage { get { return currentHealthPoints / maxHealthPoints; } }
-
-    }
+        /// <summary>Put <c>VALUE</c> AS % [float SiNGED number](with -/+, its important)</summary>
+        public float HealthAsPercentage {
+            get { return currentHealthPoints / maxHealthPoints; }
+            set { currentHealthPoints = Mathf.Clamp(
+                        currentHealthPoints + (maxHealthPoints / 100 * value), 0f, maxHealthPoints);                
+            }
+        }
+    }            
 }
+
+//
+//
+//50%-Cursor 50hp,
+// 100hp / 100 * (50%+x)
+// 100hp / 100 *(50+25=75)
+//
+
+

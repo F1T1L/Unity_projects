@@ -337,7 +337,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1038149378, guid: f8f7372a9e9f7ce4b8beec088a854dde, type: 3}
       propertyPath: damagePerShot
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1038149378, guid: f8f7372a9e9f7ce4b8beec088a854dde, type: 3}
       propertyPath: secondsBetweenShots
@@ -4839,6 +4839,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1764064019}
     m_Modifications:
+    - target: {fileID: 1700527330, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 3}
+      propertyPath: m_Volume
+      value: 0.271
+      objectReference: {fileID: 0}
     - target: {fileID: 1695931506403113391, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

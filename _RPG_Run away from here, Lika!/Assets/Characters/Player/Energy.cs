@@ -8,18 +8,19 @@ namespace RPG.Character
     public class Energy : MonoBehaviour
     {
         [SerializeField] float maxEnergyPoints = 100f;
-        [SerializeField] float regenPointsPerSec = 10f;       
-
+        [SerializeField] float regenPointsPerSec = 10f;
+        Slider slider;
         Image EnergyBar = null;        
         float currentEnergyPoints;
         void Start()
         {
+            slider = GetComponent<Slider>();
             currentEnergyPoints = maxEnergyPoints;            
             EnergyBar = GetComponent<Image>();
             UpdateEnergyBar();
         }
         private void Update()
-        {
+        {  
             EnergyRegeneration();
         }
         private void EnergyRegeneration()

@@ -2,7 +2,7 @@ using UnityEngine;
 namespace RPG.Character
 {
     [CreateAssetMenu(menuName = ("RPG/SpecialAbility/PowerAttack"))]
-    public class PowerAttack : SpecialAbility, ISpecialAbility
+    public class PowerAttack : AbilityConfig, ISpecialAbility
     {
         // [Header("Power Attack Specific")]
         float extraDamage= 10f;

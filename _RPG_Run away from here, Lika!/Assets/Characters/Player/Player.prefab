@@ -2914,7 +2914,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealthPoints: 100
-  currentHealthPoints: 100
   basedamage: 25
   damageSounds:
   - {fileID: 8300000, guid: 0a7fb81a0cb690b4084225b309be8194, type: 3}
@@ -2931,6 +2930,7 @@ MonoBehaviour:
   animatorOverrideController: {fileID: 22100000, guid: cecd1d931c2bfe7448c398a4dd842bc3, type: 2}
   abilities:
   - {fileID: 11400000, guid: 6680670c39d090b4ab1286e646b71152, type: 2}
+  - {fileID: 11400000, guid: 4e8f45d7c44c5584ea1371254b7a57aa, type: 2}
   - {fileID: 11400000, guid: 09d748984c22aa042a7107d504375be6, type: 2}
 --- !u!114 &7395700260821331042
 MonoBehaviour:

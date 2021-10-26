@@ -2,7 +2,7 @@ using UnityEngine;
 namespace RPG.Character
 {
     [CreateAssetMenu(menuName = ("RPG/SpecialAbility/AreaOfEffect"))]
-    public class AreaOfEffect : SpecialAbility, ISpecialAbility
+    public class AreaOfEffect : AbilityConfig, ISpecialAbility
     {        
         [SerializeField] float radius=5f,
                                damageToEachTarget=5f;
