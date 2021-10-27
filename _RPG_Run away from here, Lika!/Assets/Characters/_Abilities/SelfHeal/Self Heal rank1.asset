@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Self Heal rank1
   m_EditorClassIdentifier: 
   energyCost: 45
-  particlePrefab: {fileID: 3467135069905468794, guid: 465638357d00abc4b82f21c24ac8aadb, type: 3}
+  particlePrefab: {fileID: 1770094935522392, guid: 7098bdbdcde165049872f566c6a00e5f, type: 3}
   audioClip: {fileID: 8300000, guid: 558b476c572fddc4d8338fa635b7324d, type: 3}
   amount: 25

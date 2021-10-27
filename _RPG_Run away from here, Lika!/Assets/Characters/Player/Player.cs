@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Assertions;
@@ -15,14 +14,18 @@ namespace RPG.Character
         [SerializeField] float maxHealthPoints = 100f;
         [SerializeField] float currentHealthPoints = 100f;
         [SerializeField] float basedamage = 10f;       
+        [Range(0.0f,100.0f)] [SerializeField] float criticalChance =10f;       
+        [SerializeField] float criticalHitMultiplier = 1.5f;  
+        [SerializeField] ParticleSystem critHitParticle = null;
+        [SerializeField] Weapon weaponInUse = null;
+        [SerializeField] AbilityConfig[] abilities;
+        
         [SerializeField] AudioClip[] damageSounds=null;       
         [SerializeField] AudioClip[] deathSounds=null;       
 
-        [SerializeField] Weapon weaponInUse = null;
         [SerializeField] AnimatorOverrideController animatorOverrideController = null;
         //[SerializeField] GameObject weaponSocket = null;
-        [SerializeField] AbilityConfig[] abilities;
-        
+
         AudioSource audioSource;
         Animator animator;
         Energy energyComponent;
@@ -31,7 +34,7 @@ namespace RPG.Character
         float lastHitTime;
         public float CurrentHealthPoints { get=>currentHealthPoints; set=>currentHealthPoints=value; }
         private void Start()
-        {
+        {            
             audioSource = GetComponent<AudioSource>();
             cameraRaycaster = FindObjectOfType<CameraRaycaster>();
             cameraRaycaster.notifyOnMouseoverEnemyObservers += OnMouseoverEnemyObservers;
@@ -141,12 +144,28 @@ namespace RPG.Character
             //Vector3 relative = transform.InverseTransformPoint(enemy.transform.position);                   
             //this.transform.Rotate(0, Mathf.Atan2(relative.x, relative.z)* Mathf.Rad2Deg, 0);
             if (Time.time - lastHitTime >weaponInUse.GetHitDelay())
-                {
-                    animator.SetTrigger("Attack");  
-                    enemy.TakeDamage(basedamage);
-                    lastHitTime = Time.time;
-                }           
+            {
+                animator.SetTrigger("Attack");
+                enemy.TakeDamage(CalculateDamage());
+                lastHitTime = Time.time;
+            }
         }
+
+        private float CalculateDamage()
+        {
+            if (UnityEngine.Random.Range(0f, 100f) <= criticalChance)
+            {
+                print("CRITICAL_HIT! for <color=red>" +
+                    ((basedamage + weaponInUse.GetBonusWeaponDmg()) * criticalHitMultiplier)+
+                    "</color>");
+                critHitParticle.Play();
+                return (basedamage + weaponInUse.GetBonusWeaponDmg()) * criticalHitMultiplier;
+            } else {
+                print("normal_HIT! for <color=white>" + (basedamage + weaponInUse.GetBonusWeaponDmg())+"</color>");
+                return basedamage + weaponInUse.GetBonusWeaponDmg();
+            }  
+        }
+
         private bool isTargetInRange(GameObject enemy)
         {
             return (Vector3.Distance(this.transform.position, enemy.transform.position)) <= weaponInUse.GetMaxAttackRange();

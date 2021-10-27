@@ -12,7 +12,9 @@ namespace RPG.Weapons
         [SerializeField] float hitDelay = 1.5f;
         // [SerializeField] float minAttackRange= 2f;
         [SerializeField] float maxAttackRange = 2f;
+        [SerializeField] float bonusWeaponDmg = 5f;
         public float GetHitDelay() { return hitDelay; }
+        public float GetBonusWeaponDmg() { return bonusWeaponDmg; }
         public float GetMaxAttackRange() { return maxAttackRange; }
         public GameObject GetWeaponPrefab() { return weaponPrefab; }
         public AnimationClip GetAnimClip()
