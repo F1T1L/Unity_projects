@@ -1473,9 +1473,9 @@ GameObject:
   - component: {fileID: 5426510}
   - component: {fileID: 13615390}
   - component: {fileID: 1660040642}
-  - component: {fileID: 11469404}
   - component: {fileID: 1038149378}
-  - component: {fileID: 1660040641}
+  - component: {fileID: 1004765565700570879}
+  - component: {fileID: 5765736261705296874}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -1573,26 +1573,6 @@ NavMeshAgent:
   m_BaseOffset: 0.012
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &11469404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 149790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce7a80d520cacc042b5fe14f373d8173, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MovingTurnSpeed: 360
-  m_StationaryTurnSpeed: 180
-  m_JumpPower: 6
-  m_GravityMultiplier: 2
-  m_RunCycleLegOffset: 0.2
-  m_MoveSpeedMultiplier: 1
-  m_AnimSpeedMultiplier: 1
-  m_GroundCheckDistance: 0.3
 --- !u!114 &1038149378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1605,8 +1585,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d823b5602c0d6d44824045c37a53cb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthPoints: 100
-  currentHealthPoints: 100
   attackRadius: 3
   chaseRadius: 5
   secondsBetweenShots: 0.3
@@ -1614,7 +1592,7 @@ MonoBehaviour:
   projectileToUse: {fileID: 1140975907500531083, guid: 2cd8eda95ecfc28439f3dddbb1e05e06, type: 3}
   projectileSocket: {fileID: 7605906210182795148}
   aimOffset: {x: 0, y: 1.1, z: 0}
---- !u!114 &1660040641
+--- !u!114 &1004765565700570879
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1623,10 +1601,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 149790}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c5335f0882fe4d478883cc8c58ce906, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b9c40d2a9199f14287bb602451ed089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  moveThreshold: 1
+  animSpeedMultiplier: 1
+  movingTurnSpeed: 360
+  stationaryTurnSpeed: 180
+  moveSpeedMultiplier: 0.7
+  stoppingDistance: 1
+--- !u!114 &5765736261705296874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db23ef8e82e8f54aa9f56511090a8d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 0}
+  damageSounds:
+  - {fileID: 8300000, guid: 0a7fb81a0cb690b4084225b309be8194, type: 3}
+  - {fileID: 8300000, guid: a17f90a81783f844fbcf83ae872fd510, type: 3}
+  - {fileID: 8300000, guid: e4bd954943f94934189679628e34b805, type: 3}
+  - {fileID: 8300000, guid: 522f4cb81a342da41ac098089275b0ec, type: 3}
+  - {fileID: 8300000, guid: db5f8c38c5fb279418aa882f06b31ca8, type: 3}
+  - {fileID: 8300000, guid: f53764b302f851c44bec3b19b1e56a8f, type: 3}
+  deathSounds:
+  - {fileID: 8300000, guid: 558b476c572fddc4d8338fa635b7324d, type: 3}
+  - {fileID: 8300000, guid: 733295a182d10bd49b95ddd5d4b83872, type: 3}
+  - {fileID: 8300000, guid: 81ef5637397f0b942a7391d1a7bd7c1f, type: 3}
 --- !u!1 &150244
 GameObject:
   m_ObjectHideFlags: 0

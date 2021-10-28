@@ -4,47 +4,33 @@ using System;
 
 namespace RPG.Character
 {
-    public class AreaOfEffectBehavior : MonoBehaviour, ISpecialAbility
-    {
-        private AreaOfEffect config;
-        
-        public void SetConfig(AreaOfEffect config)
-        {
-           this.config = config;
-        }       
-        public void Use(AbilityUseParams aparams)
+    public class AreaOfEffectBehavior : AbilityBehavior
+    {     
+        public override void Use(AbilityUseParams aparams)
         {
             DoAoEDamage(aparams);
             PlayParticleEffect();
+            PlayAbilitySound();
         }
-
-        private void PlayParticleEffect()
-        {
-            var prefab = Instantiate(config.GetParticlePrefab(), this.transform);
-            ParticleSystem myParticleSystem = prefab.GetComponent<ParticleSystem>();
-            myParticleSystem.Play();
-            Destroy(prefab, myParticleSystem.main.duration);
-        }
-
         private void DoAoEDamage(AbilityUseParams aparams)
         {
             print("AreaOfEffect.USE()," +
-                            " radius:" + config.GetRadius() +
+                            " radius:" + (config as AreaOfEffect).GetRadius() +
                             " by " + gameObject.name +
                             ", BaseDamage:" + aparams.baseDamage +
-                            ", eachTargetDmg: " + config.GetDamageToEachTarget());
+                            ", eachTargetDmg: " + (config as AreaOfEffect).GetDamageToEachTarget());
             RaycastHit[] hits = Physics.SphereCastAll(
                 this.transform.position,
-                config.GetRadius(),
+                (config as AreaOfEffect).GetRadius(),
                 Vector3.up,
-                config.GetRadius()); ;
+                (config as AreaOfEffect).GetRadius()); ;
             foreach (var item in hits)
             {
                 var damageAble = item.collider.gameObject.GetComponent<IDamageAble>();
                 if (damageAble != null && item.collider.gameObject.layer == 7)
                 {
 
-                    damageAble.TakeDamage(aparams.baseDamage + config.GetDamageToEachTarget());
+                    damageAble.TakeDamage(aparams.baseDamage + (config as AreaOfEffect).GetDamageToEachTarget());
                 }
             }
         }

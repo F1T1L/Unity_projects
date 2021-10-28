@@ -2783,14 +2783,13 @@ GameObject:
   - component: {fileID: 7395700260393617133}
   - component: {fileID: 7395700260406190587}
   - component: {fileID: 7395700260399181227}
-  - component: {fileID: 7395700260397100777}
   - component: {fileID: 7395700260821331066}
-  - component: {fileID: 7395700260821331043}
-  - component: {fileID: 7395700260821331042}
   - component: {fileID: 7395700260821331053}
   - component: {fileID: 6841863486345547426}
   - component: {fileID: 554794204}
   - component: {fileID: 1700527330}
+  - component: {fileID: 7395700260821331043}
+  - component: {fileID: -7195643229153255070}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -2870,26 +2869,6 @@ CapsuleCollider:
   m_Height: 1.6090238
   m_Direction: 1
   m_Center: {x: 0.0047447234, y: 0.81027806, z: -0.014577746}
---- !u!114 &7395700260397100777
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7395700260403078571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce7a80d520cacc042b5fe14f373d8173, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MovingTurnSpeed: 360
-  m_StationaryTurnSpeed: 180
-  m_JumpPower: 6
-  m_GravityMultiplier: 2
-  m_RunCycleLegOffset: 0.2
-  m_MoveSpeedMultiplier: 1
-  m_AnimSpeedMultiplier: 1
-  m_GroundCheckDistance: 0.3
 --- !u!114 &7395700260821331066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2902,54 +2881,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b9c40d2a9199f14287bb602451ed089, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7395700260821331043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7395700260403078571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2478d6ed81467634d8ecc9eee6b9095e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealthPoints: 100
-  currentHealthPoints: 100
-  basedamage: 5
-  criticalChance: 10
-  criticalHitMultiplier: 1.5
-  critHitParticle: {fileID: 3630779006746085724}
-  weaponInUse: {fileID: 11400000, guid: 544fb388b20d70744af623adf2d455d6, type: 2}
-  abilities:
-  - {fileID: 11400000, guid: 6680670c39d090b4ab1286e646b71152, type: 2}
-  - {fileID: 11400000, guid: 4e8f45d7c44c5584ea1371254b7a57aa, type: 2}
-  - {fileID: 11400000, guid: 09d748984c22aa042a7107d504375be6, type: 2}
-  damageSounds:
-  - {fileID: 8300000, guid: 0a7fb81a0cb690b4084225b309be8194, type: 3}
-  - {fileID: 8300000, guid: a17f90a81783f844fbcf83ae872fd510, type: 3}
-  - {fileID: 8300000, guid: e4bd954943f94934189679628e34b805, type: 3}
-  - {fileID: 8300000, guid: 522f4cb81a342da41ac098089275b0ec, type: 3}
-  - {fileID: 8300000, guid: db5f8c38c5fb279418aa882f06b31ca8, type: 3}
-  - {fileID: 8300000, guid: f53764b302f851c44bec3b19b1e56a8f, type: 3}
-  deathSounds:
-  - {fileID: 8300000, guid: 558b476c572fddc4d8338fa635b7324d, type: 3}
-  - {fileID: 8300000, guid: 733295a182d10bd49b95ddd5d4b83872, type: 3}
-  - {fileID: 8300000, guid: 81ef5637397f0b942a7391d1a7bd7c1f, type: 3}
-  animatorOverrideController: {fileID: 22100000, guid: cecd1d931c2bfe7448c398a4dd842bc3, type: 2}
---- !u!114 &7395700260821331042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7395700260403078571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c5335f0882fe4d478883cc8c58ce906, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  moveThreshold: 1
+  animSpeedMultiplier: 1
+  movingTurnSpeed: 360
+  stationaryTurnSpeed: 180
+  moveSpeedMultiplier: 1.5
+  stoppingDistance: 0.1
 --- !u!195 &7395700260821331053
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3007,13 +2944,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.271
+  m_Volume: 0.139
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 15
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -3091,6 +3028,52 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7395700260821331043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7395700260403078571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2478d6ed81467634d8ecc9eee6b9095e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basedamage: 5
+  criticalChance: 10
+  criticalHitMultiplier: 1.5
+  critHitParticle: {fileID: 3630779006746085724}
+  currentWeapon: {fileID: 11400000, guid: 874a09cdc01386644acea0de8954fc90, type: 2}
+  abilities:
+  - {fileID: 11400000, guid: 6680670c39d090b4ab1286e646b71152, type: 2}
+  - {fileID: 11400000, guid: 4e8f45d7c44c5584ea1371254b7a57aa, type: 2}
+  - {fileID: 11400000, guid: 09d748984c22aa042a7107d504375be6, type: 2}
+  animatorOverrideController: {fileID: 22100000, guid: cecd1d931c2bfe7448c398a4dd842bc3, type: 2}
+--- !u!114 &-7195643229153255070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7395700260403078571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db23ef8e82e8f54aa9f56511090a8d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageSounds:
+  - {fileID: 8300000, guid: 0a7fb81a0cb690b4084225b309be8194, type: 3}
+  - {fileID: 8300000, guid: a17f90a81783f844fbcf83ae872fd510, type: 3}
+  - {fileID: 8300000, guid: e4bd954943f94934189679628e34b805, type: 3}
+  - {fileID: 8300000, guid: 522f4cb81a342da41ac098089275b0ec, type: 3}
+  - {fileID: 8300000, guid: db5f8c38c5fb279418aa882f06b31ca8, type: 3}
+  - {fileID: 8300000, guid: f53764b302f851c44bec3b19b1e56a8f, type: 3}
+  deathSounds:
+  - {fileID: 8300000, guid: 558b476c572fddc4d8338fa635b7324d, type: 3}
+  - {fileID: 8300000, guid: 733295a182d10bd49b95ddd5d4b83872, type: 3}
+  - {fileID: 8300000, guid: 81ef5637397f0b942a7391d1a7bd7c1f, type: 3}
+  deathVanishSeconds: 2
 --- !u!1001 &7395700259631508190
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3185,6 +3168,10 @@ PrefabInstance:
     - target: {fileID: 6107391777660101505, guid: f1c9c5ac46771264eb800dc7e395d97d, type: 3}
       propertyPath: m_Name
       value: CriticalHit Particle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6107391777660101506, guid: f1c9c5ac46771264eb800dc7e395d97d, type: 3}
+      propertyPath: looping
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1c9c5ac46771264eb800dc7e395d97d, type: 3}

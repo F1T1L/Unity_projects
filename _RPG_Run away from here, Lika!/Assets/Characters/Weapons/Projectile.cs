@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.Core;
 
-namespace RPG.Weapons
+namespace RPG.Character
 {
     public class Projectile : MonoBehaviour
     {
@@ -37,7 +37,7 @@ namespace RPG.Weapons
             if (damageable && (other.gameObject.layer != shooter.layer) && (damageable.gameObject!=null))
             {
                 //  print("BALL TRIGGER: " + other.name );
-                (damageable as IDamageAble).TakeDamage(DamageCouse);
+                GetComponent<HealthSystem>().TakeDamage(DamageCouse);
             }
             Destroy(gameObject, 0.05f);
         }

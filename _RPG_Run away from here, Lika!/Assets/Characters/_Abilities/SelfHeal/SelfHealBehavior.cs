@@ -4,43 +4,29 @@ using System;
 
 namespace RPG.Character
 {
-    public class SelfHealBehavior : MonoBehaviour, ISpecialAbility
+    public class SelfHealBehavior : AbilityBehavior
     {
-        private SelfHeal config;
-        Player player=null;
-        AudioSource audioSource=null;
+        HealthSystem hpSystem = null;
         private void Start()
         {
-            player = GetComponent<Player>();
-            audioSource = GetComponent<AudioSource>();
+            hpSystem = GetComponent<HealthSystem>();            
         }
-        public void SetConfig(SelfHeal config)
+              
+        public override void Use(AbilityUseParams aparams)
         {
-           this.config = config;
-        }        
-        public void Use(AbilityUseParams aparams)
-        {
-            DoSelfHeal(aparams);
+            DoSelfHeal();
             PlayParticleEffect();
-            audioSource.clip = config.GetAudioClip();
-            audioSource.Play(); 
+            PlayAbilitySound();
         }
-
-        private void PlayParticleEffect()
-        {
-            var prefab = Instantiate(config.GetParticlePrefab(), this.transform);
-            ParticleSystem myParticleSystem = prefab.GetComponent<ParticleSystem>();
-            myParticleSystem.Play();
-            Destroy(prefab, myParticleSystem.main.duration);
-        }
-
-        private void DoSelfHeal(AbilityUseParams aparams)
-        {
-            print(          "SelfHeal.USE()," +
-                            " amount:" + config.GetAmount() +
-                            " by " + gameObject.name);
-            player = GetComponent<Player>();
-            player.HealthAsPercentage = config.GetAmount();            
+        private void DoSelfHeal()
+        {            
+            print("SelfHeal.USE(),"+
+                  " amount: + <color=green>"+
+                  (config as SelfHeal).GetAmount()+
+                  "</color>%, from current: <color=red>"+
+                  hpSystem.currentHealthPoints+
+                  "</color>");
+            hpSystem.HealthAsPercentage = (config as SelfHeal).GetAmount();            
         }
      }
  }

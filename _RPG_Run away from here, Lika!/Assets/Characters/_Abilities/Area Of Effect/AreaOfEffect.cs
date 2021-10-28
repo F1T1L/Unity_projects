@@ -2,15 +2,13 @@ using UnityEngine;
 namespace RPG.Character
 {
     [CreateAssetMenu(menuName = ("RPG/SpecialAbility/AreaOfEffect"))]
-    public class AreaOfEffect : AbilityConfig, ISpecialAbility
+    public class AreaOfEffect : AbilityConfig
     {        
         [SerializeField] float radius=5f,
                                damageToEachTarget=5f;
-        public override void AddComponent(GameObject gameObjectToAttachTo)
+        public override AbilityBehavior GetBehaviorComponent(GameObject objectToAttachTo)
         {
-            var behaviorComponent = gameObjectToAttachTo.AddComponent<AreaOfEffectBehavior>();
-            behaviorComponent.SetConfig(this);
-            behavior = behaviorComponent;
+            return objectToAttachTo.AddComponent<AreaOfEffectBehavior>();
         }
         public float GetDamageToEachTarget()
         {
@@ -19,10 +17,6 @@ namespace RPG.Character
         public float GetRadius()
         {
             return radius;
-        }
-        public void Use()
-        {
-         
-        }
+        }       
     }
 }

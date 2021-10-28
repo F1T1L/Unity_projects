@@ -3,18 +3,15 @@ using UnityEngine.UI;
 using RPG.CameraUI;
 
 namespace RPG.Character
-{
-    [RequireComponent(typeof(Image))]
-    public class Energy : MonoBehaviour
+{    
+    public class SpecialAbility : MonoBehaviour
     {
         [SerializeField] float maxEnergyPoints = 100f;
-        [SerializeField] float regenPointsPerSec = 10f;
-        Slider slider;
+        [SerializeField] float regenPointsPerSec = 10f;        
         Image EnergyBar = null;        
         float currentEnergyPoints;
         void Start()
-        {
-            slider = GetComponent<Slider>();
+        {            
             currentEnergyPoints = maxEnergyPoints;            
             EnergyBar = GetComponent<Image>();
             UpdateEnergyBar();
