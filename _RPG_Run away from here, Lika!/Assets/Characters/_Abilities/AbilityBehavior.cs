@@ -7,7 +7,7 @@ public abstract class AbilityBehavior : MonoBehaviour
 {    
         protected AbilityConfig config;
         const float DESTROY_TIMER = 20f;
-        public abstract void Use(AbilityUseParams aparams);
+        public abstract void Use(GameObject gObj=null);
         public void SetConfig(AbilityConfig conf)
         {
             config = conf;
@@ -15,7 +15,9 @@ public abstract class AbilityBehavior : MonoBehaviour
         protected void PlayParticleEffect()
         {            
             var prefabParticle = Instantiate(config.GetParticlePrefab(), this.transform);
-            prefabParticle.transform.parent = transform;
+            //prefabParticle.transform.parent = transform;  
+            prefabParticle.transform.SetParent(transform);             
+           // prefabParticle.GetComponent<ParticleSystem>().simulationSpace=ParticleSystemSimulationSpace.World;
             prefabParticle.GetComponent<ParticleSystem>().Play();
             StartCoroutine(DestroyParticle(prefabParticle)); 
         }

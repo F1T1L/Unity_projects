@@ -1601,7 +1601,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 149790}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b9c40d2a9199f14287bb602451ed089, type: 3}
+  m_Script: {fileID: 11500000, guid: 98736ffe24210d04b9670f1c5b0acf4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveThreshold: 1
@@ -1622,7 +1622,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db23ef8e82e8f54aa9f56511090a8d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBar: {fileID: 0}
   damageSounds:
   - {fileID: 8300000, guid: 0a7fb81a0cb690b4084225b309be8194, type: 3}
   - {fileID: 8300000, guid: a17f90a81783f844fbcf83ae872fd510, type: 3}
@@ -1634,6 +1633,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 558b476c572fddc4d8338fa635b7324d, type: 3}
   - {fileID: 8300000, guid: 733295a182d10bd49b95ddd5d4b83872, type: 3}
   - {fileID: 8300000, guid: 81ef5637397f0b942a7391d1a7bd7c1f, type: 3}
+  deathVanishSeconds: 2
 --- !u!1 &150244
 GameObject:
   m_ObjectHideFlags: 0

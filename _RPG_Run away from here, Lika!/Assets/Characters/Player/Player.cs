@@ -86,7 +86,7 @@ namespace RPG.Character
             else if(Input.GetMouseButtonDown(1))
             {
                 StartCoroutine(SmoothLerp(0.5f, enemy));
-                specialAbilities.AttemptUseSpecialAbility(0);
+                specialAbilities.AttemptUseSpecialAbility(0,enemy.gameObject);
             }            
         }
        
@@ -137,8 +137,8 @@ namespace RPG.Character
         }
 
         public void TakeDamage(float damage)
-        {
-            throw new NotImplementedException();
+        {           
+            
         }
     }            
 }

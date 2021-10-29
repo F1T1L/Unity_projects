@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using RPG.Core;
+
 
 namespace RPG.Character
 {
@@ -32,12 +32,12 @@ namespace RPG.Character
         }
         void OnCollisionEnter(Collision other)
         {
-            var damageable = other.gameObject.GetComponent(typeof(IDamageAble));
+            var damageable = other.gameObject.GetComponent<HealthSystem>();
             //  if (damageable && other.transform.tag.Contains("Player"))
             if (damageable && (other.gameObject.layer != shooter.layer) && (damageable.gameObject!=null))
             {
                 //  print("BALL TRIGGER: " + other.name );
-                GetComponent<HealthSystem>().TakeDamage(DamageCouse);
+                damageable.TakeDamage(DamageCouse);
             }
             Destroy(gameObject, 0.05f);
         }

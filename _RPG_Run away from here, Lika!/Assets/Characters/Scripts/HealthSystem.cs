@@ -26,14 +26,14 @@ namespace RPG.Character
         }
         Animator animator;
         AudioSource audioSource;
-        CharacterMovement characterMovement;
+        Character characterMovement;
 
         const string DEATH_TRIGGER = "DEATH_TRIGGER";
         void Start()
         {
             animator = GetComponent<Animator>();
             audioSource = GetComponent<AudioSource>();
-            characterMovement = GetComponent<CharacterMovement>();
+            characterMovement = GetComponent<Character>();
             currentHealthPoints = maxHealthPoints;
         }
         void Update()
@@ -42,10 +42,8 @@ namespace RPG.Character
         }
         //void UpdateHealthBar()
         //{
-        //    if (healthBar) // Enemies may not have health bars to update
-        //    {
-        //        healthBar.fillAmount = HealthAsPercentage;
-        //    }
+        //     HealthAsPercentage;
+            
         //}
         public void TakeDamage(float damage)
         {

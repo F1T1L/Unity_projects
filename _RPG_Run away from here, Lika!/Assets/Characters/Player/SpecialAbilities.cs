@@ -64,7 +64,7 @@ namespace RPG.Character
                 abilities[i].AttachAbility(gameObject);
             }
         }
-        public void AttemptUseSpecialAbility(int index)
+        public void AttemptUseSpecialAbility(int index, GameObject Obj=null)
         {
             
             if (IsEnergyAvaible(abilities[index].GetEnergyCost()))
@@ -72,7 +72,10 @@ namespace RPG.Character
                 ConsumeEnergy(abilities[index].GetEnergyCost());
                 //var abilityParams = new AbilityUseParams(1);
                 // TODO ability.use
-                //abilities[index].Use(abilityParams);
+                
+
+                abilities[index].Use(gameObject);
+                
                 //animator.SetTrigger("AoE");
             }
             else { print("<color=orange><b>Need more Energy!</b></color>"); }

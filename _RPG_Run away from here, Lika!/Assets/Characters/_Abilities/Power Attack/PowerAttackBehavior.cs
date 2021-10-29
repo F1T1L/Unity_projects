@@ -3,17 +3,17 @@ namespace RPG.Character
 {
     public class PowerAttackBehavior : AbilityBehavior
     {        
-        public override void Use(AbilityUseParams aparams)
+        public override void Use(GameObject gObj)
         {
-            DoDamage(aparams);
+            DoDamage(gObj);
             PlayParticleEffect();
             PlayAbilitySound();
         }      
-        private void DoDamage(AbilityUseParams aparams)
+        private void DoDamage(GameObject gObj)
         {
-            print("PowerAttack.USE(), extra damage:" + (config as PowerAttack).GetExtraDamage() + " by " +
-                gameObject.name + " BaseDamage:" + aparams.baseDamage);
-         //   aparams.target.(aparams.baseDamage + (config as PowerAttack).GetExtraDamage());
+           // print("PowerAttack.USE(), extra damage:" + (config as PowerAttack).GetExtraDamage() + " by " +
+           //     gameObject.name + " BaseDamage:" + gObj.baseDamage);
+         gObj.GetComponent<HealthSystem>().TakeDamage((config as PowerAttack).GetExtraDamage());
         }       
     }
 }

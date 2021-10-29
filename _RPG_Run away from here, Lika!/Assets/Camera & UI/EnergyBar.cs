@@ -16,7 +16,7 @@ public class EnergyBar : MonoBehaviour
             player = FindObjectOfType<Player>();
         }
         private void Update()
-        {
+        {            
             image.fillAmount=player.GetComponent<SpecialAbilities>().EnergyAsPercentage;
         }
     }

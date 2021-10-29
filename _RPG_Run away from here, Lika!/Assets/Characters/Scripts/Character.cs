@@ -5,15 +5,29 @@ using System;
 
 namespace RPG.Character
 {
-    [RequireComponent(typeof(NavMeshAgent))]     
-    public class CharacterMovement : MonoBehaviour
+    [SelectionBase]      
+    public class Character : MonoBehaviour
     {
+        [Header("Animator")]
+        [SerializeField] RuntimeAnimatorController runtimeAnimatorController;
+        [SerializeField] AnimatorOverrideController animOverController;
+        [SerializeField] Avatar avatar;
+        [SerializeField] [Range(.1f, 1f)] float animatorForwardCap = 1f;
+        [Header("Capsule Collider")]
+        [SerializeField] Vector3 colliderCenter = new Vector3(0, 1.03f, 0);
+        [SerializeField] float colliderRadius = 0.2f;
+        [SerializeField] float colliderHeight = 2.03f;
+        [Header("Movement")]
         [SerializeField] float moveThreshold = 1f;
         [SerializeField] float animSpeedMultiplier = 1f;
         [SerializeField] float movingTurnSpeed = 360;
         [SerializeField] float stationaryTurnSpeed = 180;
-        [SerializeField] float moveSpeedMultiplier = .7f;
-        [SerializeField] float stoppingDistance = 1f;        
+        [SerializeField] float moveSpeedMultiplier = .7f;        
+        [Header("Nav Mesh Agent")]
+        [SerializeField] float navMeshAgentSteeringSpeed = 1.0f;
+        [SerializeField] float navMeshAgentStoppingDistance = 1.3f;
+        [Header("Audio")]
+        [SerializeField] float audioSourceSpatialBlend = 0.5f;
         CameraRaycaster cameraRaycaster = null; 
         float turnAmount;
         float forwardAmount;       
@@ -21,21 +35,46 @@ namespace RPG.Character
         float h, v;
         NavMeshAgent navMeshAgent;
         Animator animator; 
-        Rigidbody myRigidbody;
-        void Start()
+        Rigidbody myRigidbody; 
+        bool isAlive = true;
+        private void Awake()
         {
-            animator = GetComponent<Animator>();
-            //animator.applyRootMotion = true;            
-            myRigidbody = GetComponent<Rigidbody>();
+            AddRequeredComponents();
+        }
+
+        private void AddRequeredComponents()
+        {
+            
+            animator =gameObject.AddComponent<Animator>();
+            animator.runtimeAnimatorController = runtimeAnimatorController;            
+            animator.avatar = avatar;
+            animator.applyRootMotion = true;
+
+            var capsuleCollider = gameObject.AddComponent<CapsuleCollider>();
+            capsuleCollider.center = colliderCenter;
+            capsuleCollider.radius = colliderRadius;
+            capsuleCollider.height = colliderHeight;
+
+            myRigidbody = gameObject.AddComponent<Rigidbody>();
             myRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-            cameraRaycaster = Camera.main.GetComponent<CameraRaycaster>();                      
+
+            var audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.spatialBlend = audioSourceSpatialBlend;
+
+            navMeshAgent = gameObject.AddComponent<NavMeshAgent>();
+            navMeshAgent.speed = navMeshAgentSteeringSpeed;
+            navMeshAgent.stoppingDistance = navMeshAgentStoppingDistance;
+            navMeshAgent.autoBraking = false;
+            navMeshAgent.updateRotation = false;
+            navMeshAgent.updatePosition = true;
+        }
+
+        void Start()
+        {   cameraRaycaster = Camera.main.GetComponent<CameraRaycaster>();                      
             //walkTarget = new GameObject("walkTarget");
             cameraRaycaster.notifyOnMouseoverEnemyObservers += OnMouseoverEnemyObservers;
-            cameraRaycaster.notifyOnMouseoverTerrainObservers += OnMouseoverTerrainObservers;            
-            navMeshAgent = GetComponent<NavMeshAgent>();
-            navMeshAgent.updatePosition = false;
-            navMeshAgent.updateRotation = true;
-            navMeshAgent.stoppingDistance = stoppingDistance;
+            cameraRaycaster.notifyOnMouseoverTerrainObservers += OnMouseoverTerrainObservers;          
+          
         }
         private void Update()
         {
