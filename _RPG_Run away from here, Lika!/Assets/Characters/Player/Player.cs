@@ -13,24 +13,23 @@ namespace RPG.Character
         [Range(0.0f,100.0f)] [SerializeField] float criticalChance =10f;       
         [SerializeField] float criticalHitMultiplier = 1.5f;  
         [SerializeField] ParticleSystem critHitParticle = null;
-        [SerializeField] Weapon currentWeapon = null;
-        [SerializeField] AbilityConfig[] abilities; 
+        [SerializeField] Weapon currentWeapon = null;        
         [SerializeField] AnimatorOverrideController animatorOverrideController = null;
         HealthSystem hpsystem;
 
         GameObject weaponObj;       
         Animator animator;
-        SpecialAbility energyComponent;       
+        SpecialAbilities specialAbilities;       
         CameraRaycaster cameraRaycaster;      
         float lastHitTime;       
         private void Start()
         {
-            hpsystem=GetComponent<HealthSystem>();
+            specialAbilities = GetComponent<SpecialAbilities>();
+            hpsystem =GetComponent<HealthSystem>();
             cameraRaycaster = FindObjectOfType<CameraRaycaster>();
             cameraRaycaster.notifyOnMouseoverEnemyObservers += OnMouseoverEnemyObservers;            
             PutWeaponInHand(currentWeapon);
-            SetAttackAnimation();
-            AttachAbilities();                      
+            SetAttackAnimation();                                
         }
         public void PutWeaponInHand(Weapon weaponToUse)
         {
@@ -43,13 +42,7 @@ namespace RPG.Character
             weaponObj.transform.localRotation = currentWeapon.gripTransform.localRotation;
             //Instantiate(weaponInUse, this.transform.Find("EthanRightHandThumb4"));
         }
-        private void AttachAbilities()
-        {
-            for (int i = 0; i < abilities.Length; i++)
-            {
-                abilities[i].AttachAbility(gameObject);                
-            }
-        }
+      
 
         private void Update()
         {
@@ -61,11 +54,11 @@ namespace RPG.Character
 
         private void ScanForAbilityKeyDown()
         {
-            for (int i = 0; i < abilities.Length; i++)
+            for (int i = 0; i < specialAbilities.GetNumberOfAbilities(); i++)
             {                
                 if (Input.GetKeyDown((i+1).ToString()))
                 {
-                    AttemptUseSpecialAbility(i);                    
+                    specialAbilities.AttemptUseSpecialAbility(i);                    
                 }
             }            
         }     
@@ -93,23 +86,10 @@ namespace RPG.Character
             else if(Input.GetMouseButtonDown(1))
             {
                 StartCoroutine(SmoothLerp(0.5f, enemy));
-                AttemptUseSpecialAbility(0);
+                specialAbilities.AttemptUseSpecialAbility(0);
             }            
         }
-
-        private void AttemptUseSpecialAbility(int index)
-        {
-                energyComponent = FindObjectOfType<SpecialAbility>();
-                if (energyComponent.IsEnergyAvaible(abilities[index].GetEnergyCost()))// TODO script
-                {
-                    energyComponent.ConsumeEnergy(abilities[index].GetEnergyCost());
-                    var abilityParams = new AbilityUseParams(basedamage);
-                    abilities[index].Use(abilityParams);
-                    animator.SetTrigger("AoE");
-                }
-                else { print("<color=orange><b>Need more Energy!</b></color>"); }
-                
-        }
+       
         private IEnumerator SmoothLerp(float time, Enemy enemy)
         {
             Vector3 vectorToTarget = enemy.transform.position - transform.position;

@@ -2790,6 +2790,7 @@ GameObject:
   - component: {fileID: 1700527330}
   - component: {fileID: 7395700260821331043}
   - component: {fileID: -7195643229153255070}
+  - component: {fileID: 1811396228}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -3045,10 +3046,6 @@ MonoBehaviour:
   criticalHitMultiplier: 1.5
   critHitParticle: {fileID: 3630779006746085724}
   currentWeapon: {fileID: 11400000, guid: 874a09cdc01386644acea0de8954fc90, type: 2}
-  abilities:
-  - {fileID: 11400000, guid: 6680670c39d090b4ab1286e646b71152, type: 2}
-  - {fileID: 11400000, guid: 4e8f45d7c44c5584ea1371254b7a57aa, type: 2}
-  - {fileID: 11400000, guid: 09d748984c22aa042a7107d504375be6, type: 2}
   animatorOverrideController: {fileID: 22100000, guid: cecd1d931c2bfe7448c398a4dd842bc3, type: 2}
 --- !u!114 &-7195643229153255070
 MonoBehaviour:
@@ -3074,6 +3071,22 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 733295a182d10bd49b95ddd5d4b83872, type: 3}
   - {fileID: 8300000, guid: 81ef5637397f0b942a7391d1a7bd7c1f, type: 3}
   deathVanishSeconds: 2
+--- !u!114 &1811396228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7395700260403078571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f8393c086366074fa118346fe028ac3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilities:
+  - {fileID: 11400000, guid: 6680670c39d090b4ab1286e646b71152, type: 2}
+  - {fileID: 11400000, guid: 4e8f45d7c44c5584ea1371254b7a57aa, type: 2}
+  - {fileID: 11400000, guid: 09d748984c22aa042a7107d504375be6, type: 2}
 --- !u!1001 &7395700259631508190
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -938,7 +938,7 @@ GameObject:
   - component: {fileID: 7043852000497836118}
   - component: {fileID: 6312589209013691693}
   - component: {fileID: 5750659578388340820}
-  - component: {fileID: 4016347900044455587}
+  - component: {fileID: 2448286123860153737}
   m_Layer: 5
   m_Name: Energy
   m_TagString: Untagged
@@ -998,12 +998,12 @@ MonoBehaviour:
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 1
-  m_FillAmount: 0.405
+  m_FillAmount: 0.286
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4016347900044455587
+--- !u!114 &2448286123860153737
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1012,8 +1012,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7423225853637581199}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f8393c086366074fa118346fe028ac3, type: 3}
+  m_Script: {fileID: 11500000, guid: eada0e932d3776b4f909a2dc7632bc5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxEnergyPoints: 100
-  regenPointsPerSec: 20
