@@ -9,11 +9,11 @@ namespace RPG.CameraUI
 public class EnergyBar : MonoBehaviour
 {
         Image image;
-        Player player;
+        PlayerMovement player;
         private void Start()
         {
             image = GetComponent<Image>();   
-            player = FindObjectOfType<Player>();
+            player = FindObjectOfType<PlayerMovement>();
         }
         private void Update()
         {            

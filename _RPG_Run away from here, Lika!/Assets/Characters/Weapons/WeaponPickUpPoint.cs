@@ -43,7 +43,7 @@ public class WeaponPickUpPoint : MonoBehaviour
         }
         private void OnTriggerEnter(Collider other)
         {
-            FindObjectOfType<Player>().PutWeaponInHand(weaponConfig);           
+            FindObjectOfType<PlayerMovement>().PutWeaponInHand(weaponConfig);           
             //audioSource.PlayOneShot(audioClip);
         }
     }

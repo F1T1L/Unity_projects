@@ -67,30 +67,26 @@ namespace RPG.Character
             navMeshAgent.autoBraking = false;
             navMeshAgent.updateRotation = false;
             navMeshAgent.updatePosition = true;
-        }
-
-        void Start()
-        {   cameraRaycaster = Camera.main.GetComponent<CameraRaycaster>();                      
-            //walkTarget = new GameObject("walkTarget");
-            cameraRaycaster.notifyOnMouseoverEnemyObservers += OnMouseoverEnemyObservers;
-            cameraRaycaster.notifyOnMouseoverTerrainObservers += OnMouseoverTerrainObservers;          
-          
-        }
+        }      
         private void Update()
         {
-            if (navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance)
+            if (navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance && isAlive)
             {
                 Move(navMeshAgent.desiredVelocity);
             }
             else { Move(Vector3.zero); }
         }
 
-        internal void Kill()
+        public void Kill()
         {
-            print("dead");
+            print(this.name+" died.");
+            isAlive = false;
         }
-
-        public void Move(Vector3 move)
+        public void SetDestination(Vector3 worldPos)
+        {
+            navMeshAgent.destination=worldPos;
+        }
+        private void Move(Vector3 move)
         {
             if (move.magnitude > moveThreshold)
             {
@@ -123,22 +119,7 @@ namespace RPG.Character
                 myRigidbody.velocity = velocity;
             }
         }
-        void OnMouseoverEnemyObservers(Enemy enemy)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                navMeshAgent.SetDestination(enemy.transform.position);
-               // aiCharacterControl.SetTarget(enemy.transform);                
-            }
-        }
-        void OnMouseoverTerrainObservers(Vector3 destination) {
-            if (Input.GetMouseButtonDown(0))
-            {
-                navMeshAgent.SetDestination(destination);
-                //walkTarget.transform.position = destination;
-                //aiCharacterControl.SetTarget(walkTarget.transform);
-            }
-        }
+      
         // TODO make this get called again
         void ProcessDirectMovement()
         {

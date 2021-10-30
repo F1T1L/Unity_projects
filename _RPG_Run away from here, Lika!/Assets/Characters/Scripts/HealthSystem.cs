@@ -67,7 +67,7 @@ namespace RPG.Character
             Debug.LogWarning(gameObject.name+" died.");
             yield return new WaitForSecondsRealtime(audioSource.clip.length);
 
-            var playerComponent = GetComponent<Player>();
+            var playerComponent = GetComponent<PlayerMovement>();
             if (playerComponent && playerComponent.isActiveAndEnabled) // relying on lazy evaluation
             {
                 SceneManager.LoadScene(0);

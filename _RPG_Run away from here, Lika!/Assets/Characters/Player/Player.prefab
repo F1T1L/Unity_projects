@@ -2859,10 +2859,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7395700260403078571}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2478d6ed81467634d8ecc9eee6b9095e, type: 3}
+  m_Script: {fileID: 11500000, guid: 7dd0cb83459889e4b93c3e0a07e48db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basedamage: 5
+  basedamage: 10
   criticalChance: 10
   criticalHitMultiplier: 1.5
   critHitParticle: {fileID: 3630779006746085724}

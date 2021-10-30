@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -6,7 +5,7 @@ using RPG.CameraUI;
 
 namespace RPG.Character
 {
-    public class Player : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour
     {       
         
         [SerializeField] float basedamage = 10f;       
@@ -16,7 +15,7 @@ namespace RPG.Character
         [SerializeField] Weapon currentWeapon = null;        
         [SerializeField] AnimatorOverrideController animatorOverrideController = null;
         HealthSystem hpsystem;
-
+        Character character;
         GameObject weaponObj;       
         Animator animator;
         SpecialAbilities specialAbilities;       
@@ -24,12 +23,25 @@ namespace RPG.Character
         float lastHitTime;       
         private void Start()
         {
+            character = GetComponent<Character>();
             specialAbilities = GetComponent<SpecialAbilities>();
-            hpsystem =GetComponent<HealthSystem>();
-            cameraRaycaster = FindObjectOfType<CameraRaycaster>();
-            cameraRaycaster.notifyOnMouseoverEnemyObservers += OnMouseoverEnemyObservers;            
+            hpsystem = GetComponent<HealthSystem>();
             PutWeaponInHand(currentWeapon);
-            SetAttackAnimation();                                
+            SetAttackAnimation();
+            RegisterMouseEvents();
+        }
+
+        private void RegisterMouseEvents()
+        {
+            cameraRaycaster = FindObjectOfType<CameraRaycaster>();
+            cameraRaycaster.notifyOnMouseoverEnemyObservers += OnMouseoverEnemyObservers;
+            cameraRaycaster.notifyOnMouseoverTerrainObservers += OnMouseoverTerrainObservers;
+        }
+
+        private void Update()
+        {            
+                ScanForAbilityKeyDown();
+           
         }
         public void PutWeaponInHand(Weapon weaponToUse)
         {
@@ -42,15 +54,6 @@ namespace RPG.Character
             weaponObj.transform.localRotation = currentWeapon.gripTransform.localRotation;
             //Instantiate(weaponInUse, this.transform.Find("EthanRightHandThumb4"));
         }
-      
-
-        private void Update()
-        {
-            if (hpsystem.currentHealthPoints > Mathf.Epsilon)
-            {
-                ScanForAbilityKeyDown();
-            }
-        }
 
         private void ScanForAbilityKeyDown()
         {
@@ -60,6 +63,26 @@ namespace RPG.Character
                 {
                     specialAbilities.AttemptUseSpecialAbility(i);                    
                 }
+            }            
+        }   
+        void OnMouseoverTerrainObservers(Vector3 dest)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                character.SetDestination(dest);
+            }
+        }
+        void OnMouseoverEnemyObservers(Enemy enemy)
+        {            
+            if ( Input.GetMouseButtonDown(0) && isTargetInRange(enemy.gameObject))
+            {
+                StartCoroutine(SmoothLerp(0.5f, enemy));
+                AttackTarget();                
+            } 
+            else if(Input.GetMouseButtonDown(1))
+            {
+                StartCoroutine(SmoothLerp(0.5f, enemy));
+                specialAbilities.AttemptUseSpecialAbility(0,enemy.gameObject);
             }            
         }     
         private void SetAttackAnimation()
@@ -76,19 +99,6 @@ namespace RPG.Character
             return dominantHands[0].gameObject;
         }
 
-        void OnMouseoverEnemyObservers(Enemy enemy)
-        {            
-            if ( Input.GetMouseButtonDown(0) && isTargetInRange(enemy.gameObject))
-            {
-                StartCoroutine(SmoothLerp(0.5f, enemy));
-                AttackTarget();                
-            } 
-            else if(Input.GetMouseButtonDown(1))
-            {
-                StartCoroutine(SmoothLerp(0.5f, enemy));
-                specialAbilities.AttemptUseSpecialAbility(0,enemy.gameObject);
-            }            
-        }
        
         private IEnumerator SmoothLerp(float time, Enemy enemy)
         {
