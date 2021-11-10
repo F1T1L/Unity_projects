@@ -8,7 +8,7 @@ namespace RPG.Character
 [ExecuteInEditMode]
 public class WeaponPickUpPoint : MonoBehaviour
 {
-        [SerializeReference] Weapon weaponConfig;
+        [SerializeReference] WeaponConfig weaponConfig;
         //[SerializeReference] AudioClip audioClip;
        // AudioSource audioSource;
     // Start is called before the first frame update
@@ -43,7 +43,7 @@ public class WeaponPickUpPoint : MonoBehaviour
         }
         private void OnTriggerEnter(Collider other)
         {
-            FindObjectOfType<PlayerMovement>().PutWeaponInHand(weaponConfig);           
+            FindObjectOfType<WeaponSystem>().PutWeaponInHand(weaponConfig);           
             //audioSource.PlayOneShot(audioClip);
         }
     }

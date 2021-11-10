@@ -24,7 +24,7 @@ namespace RPG.CameraUI
 		public delegate void OnMouseoverTerrain(Vector3 destination); 
 		public event OnMouseoverTerrain notifyOnMouseoverTerrainObservers; 
 
-		public delegate void OnMouseoverEnemy(Enemy enemy); 
+		public delegate void OnMouseoverEnemy(EnemyAI enemy); 
 		public event OnMouseoverEnemy notifyOnMouseoverEnemyObservers;
 		
 		void Update()
@@ -67,7 +67,7 @@ namespace RPG.CameraUI
 				RaycastHit raycastHit;
 				Physics.Raycast(ray, out raycastHit, maxRaycastDepth);
 				var enemy = raycastHit.collider.gameObject;
-				Enemy enemyHit = enemy.GetComponent<Enemy>();				
+				EnemyAI enemyHit = enemy.GetComponent<EnemyAI>();				
 				if (enemyHit)
                 {				
 					Cursor.SetCursor(targetCursor, cursorHotspot, CursorMode.Auto);

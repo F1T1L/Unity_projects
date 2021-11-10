@@ -12,7 +12,7 @@ namespace RPG.Character
         [SerializeField] RuntimeAnimatorController runtimeAnimatorController;
         [SerializeField] AnimatorOverrideController animOverController;
         [SerializeField] Avatar avatar;
-        [SerializeField] [Range(.1f, 1f)] float animatorForwardCap = 1f;
+       // [SerializeField] [Range(.1f, 1f)] float animatorForwardCap = 1f;
         [Header("Capsule Collider")]
         [SerializeField] Vector3 colliderCenter = new Vector3(0, 1.03f, 0);
         [SerializeField] float colliderRadius = 0.2f;
@@ -76,7 +76,10 @@ namespace RPG.Character
             }
             else { Move(Vector3.zero); }
         }
-
+        public AnimatorOverrideController GetAnimatorOverrideController()
+        {
+            return animOverController;
+        }
         public void Kill()
         {
             print(this.name+" died.");
