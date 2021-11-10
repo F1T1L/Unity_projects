@@ -5,7 +5,10 @@ using RPG.CameraUI;
 
 namespace RPG.Character
 {
-    public class PlayerMovement : MonoBehaviour
+    [RequireComponent(typeof(HealthSystem))]
+    [RequireComponent(typeof(Character))]
+    [RequireComponent(typeof(WeaponSystem))]
+    public class PlayerControl : MonoBehaviour
     {   
         Character character;
         SpecialAbilities specialAbilities;       
@@ -48,17 +51,49 @@ namespace RPG.Character
         }
         void OnMouseoverEnemyObservers(EnemyAI enemy)
         {            
-            if ( Input.GetMouseButtonDown(0) && isTargetInRange(enemy.gameObject))
+           
+            if (Input.GetMouseButton(1) && isTargetInRange(enemy.gameObject))
             {
                 StartCoroutine(SmoothLerp(0.5f, enemy));
-                weaponSystem.Attack(enemy.gameObject);                
-            } 
-            else if(Input.GetMouseButtonDown(1))
+                weaponSystem.Attack(enemy.gameObject);
+            }
+            else if (Input.GetMouseButton(1) && !isTargetInRange(enemy.gameObject))
             {
                 StartCoroutine(SmoothLerp(0.5f, enemy));
-                specialAbilities.AttemptUseSpecialAbility(0,enemy.gameObject);
-            }            
-        }   
+                StartCoroutine(MoveAndAttack(enemy));
+            }
+            //else if (Input.GetMouseButtonDown(1) && isTargetInRange(enemy.gameObject))
+            //{
+            //    StartCoroutine(SmoothLerp(0.5f, enemy));
+            //    specialAbilities.AttemptUseSpecialAbility(0, enemy.gameObject);
+            //}
+            //else if (Input.GetMouseButtonDown(1) && !isTargetInRange(enemy.gameObject))
+            //{
+            //    StartCoroutine(SmoothLerp(0.5f, enemy));
+            //    StartCoroutine(MoveAndPowerAttack(enemy));
+            //}
+        }
+        IEnumerator MoveToTarget(GameObject target)
+        {
+            character.SetDestination(target.transform.position);
+            while (!isTargetInRange(target))
+            {
+                yield return new WaitForEndOfFrame();
+            }
+            yield return new WaitForEndOfFrame();
+        }
+
+        IEnumerator MoveAndAttack(EnemyAI enemy)
+        {
+            yield return StartCoroutine(MoveToTarget(enemy.gameObject));
+            weaponSystem.Attack(enemy.gameObject);
+        }
+
+        //IEnumerator MoveAndPowerAttack(EnemyAI enemy)
+        //{
+        //    yield return StartCoroutine(MoveToTarget(enemy.gameObject));
+        //    specialAbilities.AttemptUseSpecialAbility(0, enemy.gameObject);
+        //}
         private IEnumerator SmoothLerp(float time, EnemyAI enemy)
         {
             Vector3 vectorToTarget = enemy.transform.position - transform.position;
@@ -73,7 +108,7 @@ namespace RPG.Character
             }           
         } 
         private bool isTargetInRange(GameObject enemy)
-        {
+        {            
             return (Vector3.Distance(this.transform.position, enemy.transform.position)) <= weaponSystem.currentWeapon.GetMaxAttackRange();
         }      
     }            

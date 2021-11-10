@@ -3,12 +3,14 @@ using UnityEngine;
 
 namespace RPG.Character
 {
+     [RequireComponent(typeof(HealthSystem))]
      [RequireComponent(typeof(Character))]
      [RequireComponent(typeof(WeaponSystem))]
     public class EnemyAI : MonoBehaviour
     {                  
         [SerializeField] float chaseRadius = 5f;
         [SerializeField] float waypointTolerance = 2f;
+        [SerializeField] float waitTimeAtWaypoint = .2f;
         //[SerializeField] float secondsBetweenShots = 2f;
         //[SerializeField] float damagePerShot = 10f;
 
@@ -18,10 +20,10 @@ namespace RPG.Character
         [SerializeField] WaypointContainer waypointContainer = null;
         enum State
         {
-            normal, patrolling, attacking, chasing
+            normal, patrolling, attacking, chasing, dead
         }
         State state = State.normal;       
-        PlayerMovement player = null;        
+        PlayerControl player = null;        
         float attackRadius, distanceToPlayer;
         WeaponSystem weaponSystem;
         Character character;
@@ -29,46 +31,56 @@ namespace RPG.Character
         int index=0;
         private void Start()
         {
-            player = FindObjectOfType<PlayerMovement>();
+            player = FindObjectOfType<PlayerControl>();
             character = GetComponent<Character>();
         }
         private void Update()
-        {           
-            distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
-            weaponSystem = GetComponent<WeaponSystem>();
-            attackRadius = weaponSystem.currentWeapon.GetMaxAttackRange();
-            if (distanceToPlayer > chaseRadius && state != State.patrolling)
+        {
+            if (character.isAlive)
             {
-                StopAllCoroutines();
-                state = State.patrolling;
-                StartCoroutine(Patrol());
+                distanceToPlayer = Vector3.Distance(player.transform.position, transform.position);
+                weaponSystem = GetComponent<WeaponSystem>();
+                attackRadius = weaponSystem.currentWeapon.GetMaxAttackRange();
+                if (distanceToPlayer > chaseRadius && state != State.patrolling)
+                {
+                    StopAllCoroutines();
+                    weaponSystem.StopAttacking();
+                    state = State.patrolling;
+                    StartCoroutine(Patrol());
 
-            }
-            if (distanceToPlayer <= chaseRadius && state!=State.chasing)
-            {
-                StopAllCoroutines();
-                state = State.chasing;
-                StartCoroutine(ChasePlayer());
-                //aiCharacter.SetTarget(player.transform);     //todo delete old. 
-                //aiCharacter.SetTarget(transform); //todo delete old.
-            }
+                }
+                if (distanceToPlayer <= chaseRadius && state != State.chasing)
+                {
+                    StopAllCoroutines();
+                    state = State.chasing;
+                    StartCoroutine(ChasePlayer());
+                    //aiCharacter.SetTarget(player.transform);     //todo delete old. 
+                    //aiCharacter.SetTarget(transform); //todo delete old.
+                }
 
-            if (distanceToPlayer <= attackRadius && state!=State.attacking)
-            {
-                StopAllCoroutines();
-                LookAtPlayer();
-                state = State.attacking;
-                // InvokeRepeating("FireProjectile", 0f, secondsBetweenShots); // TODO switch to coroutines
-            }
+                if (distanceToPlayer <= attackRadius && state != State.attacking)
+                {
+                    StopAllCoroutines();
+                    LookAtPlayer();
+                    state = State.attacking;
+                    weaponSystem.Attack(player.gameObject);
+                    // InvokeRepeating("FireProjectile", 0f, secondsBetweenShots); // TODO switch to coroutines
+                }
 
-            if (distanceToPlayer > attackRadius)
-            {                
-               // CancelInvoke();
+                if (!player.GetComponent<Character>().isAlive)
+                {
+                    StopAllCoroutines();
+                    weaponSystem.StopAttacking();
+                    state = State.patrolling;
+                    StartCoroutine(Patrol());
+                    // CancelInvoke();
+                }
             }
+            else { state = State.dead; }
         }
         IEnumerator Patrol()
         {
-            while (true)
+            while (waypointContainer!=null)
             {
                 nextWaypoint = waypointContainer.transform.GetChild(index).position;
                 character.SetDestination(nextWaypoint);
@@ -76,7 +88,7 @@ namespace RPG.Character
                 {
                     index = (index + 1) % waypointContainer.transform.childCount;                    
                 }
-                yield return new WaitForSeconds(.3f);
+                yield return new WaitForSeconds(waitTimeAtWaypoint);
             }           
         }
         IEnumerator ChasePlayer()

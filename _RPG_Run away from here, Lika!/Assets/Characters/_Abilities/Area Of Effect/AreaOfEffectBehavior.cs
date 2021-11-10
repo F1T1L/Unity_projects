@@ -10,6 +10,7 @@ namespace RPG.Character
             DoAoEDamage();
             PlayParticleEffect();
             PlayAbilitySound();
+            PlayAbilityAnimation();
         }
         private void DoAoEDamage( )
         {

@@ -15,7 +15,7 @@ namespace RPG.CameraUI
 		[SerializeField] Texture2D buttonCursor = null;
 		[SerializeField] Vector2 cursorHotspot = new Vector2(0, 0);
 		[SerializeField] const int walkableLayerNumber = 6;
-		[SerializeField] const int enemyLayerNumber = 7;
+		//[SerializeField] const int enemyLayerNumber = 7;
 
 		float maxRaycastDepth = 100f; // Hard coded value		
 		Rect screenRectAtStartApp; //no resize . hardcoded
@@ -33,9 +33,7 @@ namespace RPG.CameraUI
 			// Check if pointer is over an interactable UI element
 			if (EventSystem.current.IsPointerOverGameObject())
             {
-				Cursor.SetCursor(buttonCursor, cursorHotspot, CursorMode.Auto);
-				//  NotifyObserersIfLayerChanged(5);
-				//  return; // Stop looking for other objects
+				Cursor.SetCursor(buttonCursor, cursorHotspot, CursorMode.Auto);				
 			}
             else
 			{
@@ -45,37 +43,8 @@ namespace RPG.CameraUI
 					if (RaycastForEnemy(ray)) { return; }
 					if (RaycastForWalkable(ray)) { return; }
 				}
-				else { Debug.LogWarning("NOT IN RECTANGLE OF SCREEN"); }
-            }
-
-            bool RaycastForWalkable(Ray ray)
-			{
-				RaycastHit raycastHit;
-				LayerMask layerMask = 1 << walkableLayerNumber;
-				bool walkableHit = Physics.Raycast(ray, out raycastHit, maxRaycastDepth, layerMask);
-				if (walkableHit)
-				{
-					Cursor.SetCursor(walkCursor, cursorHotspot, CursorMode.Auto);
-					notifyOnMouseoverTerrainObservers(raycastHit.point);					
-					return true;
-				}
-				return false;                
-			}
-
-			bool RaycastForEnemy(Ray ray)
-			{
-				RaycastHit raycastHit;
-				Physics.Raycast(ray, out raycastHit, maxRaycastDepth);
-				var enemy = raycastHit.collider.gameObject;
-				EnemyAI enemyHit = enemy.GetComponent<EnemyAI>();				
-				if (enemyHit)
-                {				
-					Cursor.SetCursor(targetCursor, cursorHotspot, CursorMode.Auto);
-					notifyOnMouseoverEnemyObservers(enemyHit);
-					return true;
-                }
-				return false;
-			}
+				else { Debug.LogWarning("MOUSE NOT IN GAMEWINDOW => NOT IN RECTANGLE OF SCREEN"); }
+            }            
             //void RaycastingLayers()
             //{
             //    // Raycast to max depth, every frame as things can move under mouse
@@ -104,38 +73,64 @@ namespace RPG.CameraUI
             //    }
             //}
         }
+		bool RaycastForEnemy(Ray ray)
+		{
+			RaycastHit raycastHit;
+			Physics.Raycast(ray, out raycastHit, maxRaycastDepth);
+			var enemy = raycastHit.collider.gameObject;
+			EnemyAI enemyHit = enemy.GetComponent<EnemyAI>();
+			if (enemyHit)
+			{
+				Cursor.SetCursor(targetCursor, cursorHotspot, CursorMode.Auto);
+				notifyOnMouseoverEnemyObservers(enemyHit);
+				return true;
+			}
+			return false;
+		}
+		bool RaycastForWalkable(Ray ray)
+		{
+			RaycastHit raycastHit;
+			LayerMask layerMask = 1 << walkableLayerNumber;
+			bool walkableHit = Physics.Raycast(ray, out raycastHit, maxRaycastDepth, layerMask);
+			if (walkableHit)
+			{
+				Cursor.SetCursor(walkCursor, cursorHotspot, CursorMode.Auto);
+				notifyOnMouseoverTerrainObservers(raycastHit.point);
+				return true;
+			}
+			return false;
+		}
 
+		//       void NotifyObserersIfLayerChanged(int newLayer)
+		//	{
+		//		if (newLayer != topPriorityLayerLastFrame)
+		//		{
+		//			topPriorityLayerLastFrame = newLayer;
+		//			notifyLayerChangeObservers(newLayer);
+		//		}
+		//	}
 
- //       void NotifyObserersIfLayerChanged(int newLayer)
-	//	{
-	//		if (newLayer != topPriorityLayerLastFrame)
-	//		{
-	//			topPriorityLayerLastFrame = newLayer;
-	//			notifyLayerChangeObservers(newLayer);
-	//		}
-	//	}
+		//	RaycastHit? FindTopPriorityHit(RaycastHit[] raycastHits)
+		//	{
+		//		// Form list of layer numbers hit
+		//		List<int> layersOfHitColliders = new List<int>();
+		//		foreach (RaycastHit hit in raycastHits)
+		//		{
+		//			layersOfHitColliders.Add(hit.collider.gameObject.layer);
+		//		}
 
-	//	RaycastHit? FindTopPriorityHit(RaycastHit[] raycastHits)
-	//	{
-	//		// Form list of layer numbers hit
-	//		List<int> layersOfHitColliders = new List<int>();
-	//		foreach (RaycastHit hit in raycastHits)
-	//		{
-	//			layersOfHitColliders.Add(hit.collider.gameObject.layer);
-	//		}
-
-	//		// Step through layers in order of priority looking for a gameobject with that layer
-	//		foreach (int layer in layerPriorities)
-	//		{
-	//			foreach (RaycastHit hit in raycastHits)
-	//			{
-	//				if (hit.collider.gameObject.layer == layer)
-	//				{
-	//					return hit; // stop looking
-	//				}
-	//			}
-	//		}
-	//		return null; // because cannot use GameObject? nullable
-	//	}
+		//		// Step through layers in order of priority looking for a gameobject with that layer
+		//		foreach (int layer in layerPriorities)
+		//		{
+		//			foreach (RaycastHit hit in raycastHits)
+		//			{
+		//				if (hit.collider.gameObject.layer == layer)
+		//				{
+		//					return hit; // stop looking
+		//				}
+		//			}
+		//		}
+		//		return null; // because cannot use GameObject? nullable
+		//	}
 	}
 }

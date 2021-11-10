@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Assertions;
+using System.Collections;
 
 namespace RPG.Character
 {
@@ -13,7 +14,8 @@ namespace RPG.Character
         Character character;
         Animator animator; 
         GameObject weaponObj,target;
-        float lastHitTime;
+        float lastHitTime, hitDelay;
+        bool targetIsDead, targetIsOutOfRange;
         void Start()
         {
             character = GetComponent<Character>();
@@ -21,27 +23,66 @@ namespace RPG.Character
             PutWeaponInHand(currentWeapon);
             SetAttackAnimation();
         }
-
         void Update()
         {
+            if (target==null)
+            {
+                targetIsDead = false;
+                targetIsOutOfRange = false;
+            }
+            else
+            {
+                var targetHealth = target.GetComponent<HealthSystem>().HealthAsPercentage;
+                targetIsDead = targetHealth <= Mathf.Epsilon;
+                var distanceToTarget=Vector3.Distance(transform.position, target.transform.position);
+                targetIsOutOfRange = distanceToTarget > currentWeapon.GetMaxAttackRange();
+            }
+            if ((character.GetComponent<HealthSystem>().HealthAsPercentage<=Mathf.Epsilon) ||
+                targetIsDead || targetIsOutOfRange)
+            {                
+                StopAllCoroutines();
+            }
+        }
+        public void Attack(GameObject objToAttack)
+        { 
+            target = objToAttack;             
+            StartCoroutine(AutoAttack());       
+        }
 
+        internal void StopAttacking()
+        {
+            StopAllCoroutines();
         }
-        public void Attack(GameObject objToAttack) {
-            target = objToAttack;
-        }
-        private void AttackTarget()
+
+        IEnumerator AutoAttack()
+        {
+            bool attackerIsAlive = GetComponent<HealthSystem>().HealthAsPercentage >= Mathf.Epsilon;
+            bool targetIsAlive = target.GetComponent<HealthSystem>().HealthAsPercentage >= Mathf.Epsilon;
+            while (attackerIsAlive && targetIsAlive)
+            {
+                hitDelay=currentWeapon.GetHitDelay()*character.GetAnimSpeedMultiplier();
+                if (Time.time - lastHitTime > hitDelay)
+                {
+                    AttackAnimation();
+                    lastHitTime = Time.time;
+                }
+                yield return new WaitForSeconds(hitDelay);
+            }
+        }  
+        private void AttackAnimation()
         {
             //Vector3 relative = transform.InverseTransformPoint(enemy.transform.position);                   
             //this.transform.Rotate(0, Mathf.Atan2(relative.x, relative.z)* Mathf.Rad2Deg, 0);
-            if (Time.time - lastHitTime > currentWeapon.GetHitDelay())
-            {
-                SetAttackAnimation();
-                animator.SetTrigger("Attack");
-               // HealthSystem.TakeDamage(CalculateDamage());
-                lastHitTime = Time.time;
-            }
+            transform.LookAt(target.transform);
+            SetAttackAnimation();
+            animator.SetTrigger("Attack");
+            StartCoroutine(DamageDelay(hitDelay));
         }
-
+        IEnumerator DamageDelay(float hitDelay)
+        {
+            yield return new WaitForSecondsRealtime(hitDelay/3);
+            target.GetComponent<HealthSystem>().TakeDamage(CalculateDamage());
+        }
         private float CalculateDamage()
         {
             if (UnityEngine.Random.Range(0f, 100f) <= criticalChance)

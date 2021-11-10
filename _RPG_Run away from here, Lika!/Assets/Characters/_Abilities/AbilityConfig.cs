@@ -8,6 +8,7 @@ namespace RPG.Character
         [Header("Special Ability")]
         [SerializeField] float energyCost = 10f;
         [SerializeField] GameObject particlePrefab= null;
+        [SerializeField] AnimationClip abilityAnimation= null;
         [SerializeField] AudioClip[] audioClips= null;
         protected AbilityBehavior behavior;
         public void AttachAbility(GameObject objectToAttachTo) {
@@ -31,6 +32,10 @@ namespace RPG.Character
         public GameObject GetParticlePrefab()
         {
             return particlePrefab;
+        }
+        public AnimationClip GetAbilityAnimation()
+        {
+            return abilityAnimation;
         }
         public AudioClip GetAudioClips()
         {

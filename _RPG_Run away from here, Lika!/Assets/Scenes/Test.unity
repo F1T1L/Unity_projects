@@ -3272,6 +3272,40 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4208458315195486, guid: c96016c34e7be62488e588470988ef5b, type: 3}
   m_PrefabInstance: {fileID: 1279091034}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1295664959 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7395700260403078571, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 3}
+  m_PrefabInstance: {fileID: 1519796718}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1295664962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295664959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d68960c719f37dd4ba0855370d8a875a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1295664965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295664959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2390f41d3f1a7454d9b9ceae94521e70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  basedamage: 10
+  criticalChance: 10
+  criticalHitMultiplier: 1.5
+  critHitParticle: {fileID: 2068809321}
+  currentWeapon: {fileID: 11400000, guid: 874a09cdc01386644acea0de8954fc90, type: 2}
 --- !u!4 &1312288650 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4966303650379956, guid: 7f3b1263233678a4a92861d908051fe3, type: 3}
@@ -3927,7 +3961,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7395700260821331043, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7737647c22c1fc64a88d5cd030c352ce, type: 3}
 --- !u!4 &1546116469 stripped
 Transform:
@@ -5008,7 +5043,7 @@ PrefabInstance:
       objectReference: {fileID: 2068809321}
     - target: {fileID: 149790, guid: f8f7372a9e9f7ce4b8beec088a854dde, type: 3}
       propertyPath: m_Name
-      value: Enemy
+      value: Enemy (0)
       objectReference: {fileID: 0}
     - target: {fileID: 408730, guid: f8f7372a9e9f7ce4b8beec088a854dde, type: 3}
       propertyPath: m_RootOrder

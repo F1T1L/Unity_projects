@@ -28,7 +28,7 @@ namespace RPG.Character
         [SerializeField] float navMeshAgentStoppingDistance = 1.3f;
         [Header("Audio")]
         [SerializeField] float audioSourceSpatialBlend = 0.5f;
-        CameraRaycaster cameraRaycaster = null; 
+      //  CameraRaycaster cameraRaycaster = null; 
         float turnAmount;
         float forwardAmount;       
         //GameObject walkTarget = null;       
@@ -36,7 +36,8 @@ namespace RPG.Character
         NavMeshAgent navMeshAgent;
         Animator animator; 
         Rigidbody myRigidbody; 
-        bool isAlive = true;
+        public bool isAlive = true;
+
         private void Awake()
         {
             AddRequeredComponents();
@@ -76,14 +77,18 @@ namespace RPG.Character
             }
             else { Move(Vector3.zero); }
         }
+        public float GetAnimSpeedMultiplier()
+        {
+            return animSpeedMultiplier;
+        }
+
         public AnimatorOverrideController GetAnimatorOverrideController()
         {
             return animOverController;
         }
         public void Kill()
-        {
-            print(this.name+" died.");
-            isAlive = false;
+        {            
+            isAlive = false;            ;
         }
         public void SetDestination(Vector3 worldPos)
         {

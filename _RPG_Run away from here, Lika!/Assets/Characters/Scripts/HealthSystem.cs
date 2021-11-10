@@ -58,7 +58,7 @@ namespace RPG.Character
         }
         IEnumerator KillCharacter()
         {
-            characterMovement.Kill();
+            characterMovement.Kill();            
             characterMovement.enabled = false;// body after death will not move. turn off component. 
             animator.SetTrigger(DEATH_TRIGGER);
 
@@ -67,7 +67,7 @@ namespace RPG.Character
             Debug.LogWarning(gameObject.name+" died.");
             yield return new WaitForSecondsRealtime(audioSource.clip.length);
 
-            var playerComponent = GetComponent<PlayerMovement>();
+            var playerComponent = GetComponent<PlayerControl>();
             if (playerComponent && playerComponent.isActiveAndEnabled) // relying on lazy evaluation
             {
                 SceneManager.LoadScene(0);

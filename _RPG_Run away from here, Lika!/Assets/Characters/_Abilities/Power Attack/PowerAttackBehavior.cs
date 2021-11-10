@@ -8,6 +8,7 @@ namespace RPG.Character
             DoDamage(gObj);
             PlayParticleEffect();
             PlayAbilitySound();
+            PlayAbilityAnimation();
         }      
         private void DoDamage(GameObject gObj)
         {

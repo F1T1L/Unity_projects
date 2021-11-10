@@ -17,6 +17,7 @@ namespace RPG.Character
             DoSelfHeal(gObj);
             PlayParticleEffect();
             PlayAbilitySound();
+            PlayAbilityAnimation();
         }
         private void DoSelfHeal(GameObject gObj)
         {            

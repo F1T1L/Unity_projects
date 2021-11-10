@@ -9,11 +9,11 @@ namespace RPG.CameraUI
 public class HealthBar : MonoBehaviour
 {
         Image image;
-        PlayerMovement player;
+        PlayerControl player;
         private void Start()
         {
             image = GetComponent<Image>();   
-            player = FindObjectOfType<PlayerMovement>();
+            player = FindObjectOfType<PlayerControl>();
         }
         private void Update()
         {
