@@ -57,8 +57,8 @@ namespace RPG.Character
             capsuleCollider.height = colliderHeight;
 
             myRigidbody = gameObject.AddComponent<Rigidbody>();
-            myRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-
+            myRigidbody.constraints = RigidbodyConstraints.FreezeRotation ;
+            
             var audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.spatialBlend = audioSourceSpatialBlend;
 

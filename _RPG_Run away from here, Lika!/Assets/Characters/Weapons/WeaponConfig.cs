@@ -9,11 +9,13 @@ namespace RPG.Character
         [SerializeField] GameObject weaponPrefab;
         [SerializeField] AnimationClip attackAnimation;
 
-        [SerializeField] float hitDelay = 1.5f;
+       // [SerializeField] float hitDelay = 1.5f;
+        [SerializeField] float damageDelay = 1.5f;
         // [SerializeField] float minAttackRange= 2f;
         [SerializeField] float maxAttackRange = 2f;
         [SerializeField] float bonusWeaponDmg = 5f;
-        public float GetHitDelay() { return hitDelay; }
+        public float GetHitDelay() { return attackAnimation.length; }
+        public float GetDamageDelay() { return damageDelay; }
         public float GetBonusWeaponDmg() { return bonusWeaponDmg; }
         public float GetMaxAttackRange() { return maxAttackRange; }
         public GameObject GetWeaponPrefab() { return weaponPrefab; }

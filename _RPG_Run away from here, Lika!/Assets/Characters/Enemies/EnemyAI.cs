@@ -127,15 +127,15 @@ namespace RPG.Character
         //    // projectile.GetComponent<Rigidbody>().AddForce(vectorToPlayer * 5f);
         //    // projectile.transform.Translate(vectorToPlayer * projectileSpeed);
         //}            
-        //void OnDrawGizmos()
-        //{
-        //    // Draw attack sphere 
-        //    Gizmos.color = new Color(255f, 0, 0, .5f);
-        //    Gizmos.DrawWireSphere(transform.position, attackRadius);
+        void OnDrawGizmos()
+        {
+            // Draw attack sphere 
+            Gizmos.color = new Color(255f, 0, 0, .5f);
+            Gizmos.DrawWireSphere(transform.position, attackRadius);
 
-        //    // Draw chase sphere 
-        //    Gizmos.color = new Color(0, 0, 255, .5f);
-        //    Gizmos.DrawWireSphere(transform.position, chaseRadius);
-        //}
+            // Draw chase sphere 
+            Gizmos.color = new Color(0, 0, 255, .5f);
+            Gizmos.DrawWireSphere(transform.position, chaseRadius);
+        }
     }
 }

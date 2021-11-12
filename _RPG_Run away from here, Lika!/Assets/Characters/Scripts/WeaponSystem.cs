@@ -60,6 +60,7 @@ namespace RPG.Character
             bool targetIsAlive = target.GetComponent<HealthSystem>().HealthAsPercentage >= Mathf.Epsilon;
             while (attackerIsAlive && targetIsAlive)
             {
+                // delayhit+float animationClipTime = currentWeapon.GetAnimClip().length/ character.GetAnimSpeedMultiplier();
                 hitDelay=currentWeapon.GetHitDelay()*character.GetAnimSpeedMultiplier();
                 if (Time.time - lastHitTime > hitDelay)
                 {
@@ -80,7 +81,7 @@ namespace RPG.Character
         }
         IEnumerator DamageDelay(float hitDelay)
         {
-            yield return new WaitForSecondsRealtime(hitDelay/3);
+            yield return new WaitForSecondsRealtime(currentWeapon.GetDamageDelay());
             target.GetComponent<HealthSystem>().TakeDamage(CalculateDamage());
         }
         private float CalculateDamage()
@@ -98,7 +99,7 @@ namespace RPG.Character
                 print("normal_HIT! for <color=white>" + (basedamage + currentWeapon.GetBonusWeaponDmg()) + "</color>");
                 return basedamage + currentWeapon.GetBonusWeaponDmg();
             }
-        }
+        } 
         private GameObject ReqestDominantHand()
         {
             var dominantHands = GetComponentsInChildren<DominantHand>();
