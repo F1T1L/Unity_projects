@@ -2,10 +2,12 @@
 Все по туториалам, изучаю Unity3d (:
 
 Некоторые можно пощупать прототипы:
-https://f1t1l.itch.io/firebird
-или
-https://f1t1l.itch.io/goldenage
+https://f1t1l.itch.io/
 
-Из тестового задания видео, сделано за 10минут встроенными средствами: 
-https://youtu.be/FVB9wtwGzbU
+Остальное мусор или тестовые задания с пометкой Test.
+
+Из тестового задания видео:
+Движение по клику: https://youtu.be/FVB9wtwGzbU
+Время с API +будильник: https://youtu.be/5-k1Tk8cGXE
+
 
